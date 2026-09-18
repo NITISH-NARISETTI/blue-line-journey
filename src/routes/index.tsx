@@ -39,7 +39,12 @@ function AboutTimeline() {
     let x = PANEL_PADDING;
     const list: Anchor[] = [];
     for (const c of chapters) {
-      list.push({ id: c.id, x: x + c.width * 0.42, y: c.y, kind: c.kind });
+      list.push({
+        id: c.id,
+        x: x + c.width * 0.42,
+        y: c.y,
+        ...(c.kind ? { kind: c.kind } : {}),
+      });
       x += c.width;
     }
     return { anchors: list, total: x + PANEL_PADDING };
