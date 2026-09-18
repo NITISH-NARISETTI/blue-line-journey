@@ -12,9 +12,10 @@ export type Anchor = {
  * Wobble is derived from the anchor x so the curve is stable across renders.
  */
 export function buildSpinePath(anchors: Anchor[]): string {
-  if (anchors.length === 0) return "";
+  const first = anchors[0];
+  if (!first) return "";
 
-  let prev = { x: anchors[0].x - 340, y: anchors[0].y + 40 };
+  let prev = { x: first.x - 340, y: first.y + 40 };
   let d = `M ${prev.x} ${prev.y}`;
 
   anchors.forEach((a, i) => {
