@@ -150,6 +150,19 @@ function AboutSpread() {
     ? CANVAS.w + 1200
     : Math.max(0, (scrollX + viewport * 0.55) / Math.max(scale, 0.01));
 
+  // Soft, blurred reveal edge instead of a hard cut.
+  const fade = 520;
+  const softMask = reduced
+    ? "none"
+    : `linear-gradient(to right, rgba(0,0,0,1) 0px, rgba(0,0,0,1) ${Math.max(
+        0,
+        drawnTo - fade,
+      )}px, rgba(0,0,0,0.85) ${Math.max(0, drawnTo - fade * 0.62)}px, rgba(0,0,0,0.45) ${Math.max(
+        0,
+        drawnTo - fade * 0.3,
+      )}px, rgba(0,0,0,0) ${Math.max(0, drawnTo)}px)`;
+
+
   return (
     <main className="relative bg-[#EEEEEE] text-ink">
       <h1 className="sr-only">About me — a designer's timeline</h1>
