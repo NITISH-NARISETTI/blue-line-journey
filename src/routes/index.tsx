@@ -151,7 +151,7 @@ function AboutSpread() {
     : Math.max(0, (scrollX + viewport * 0.55) / Math.max(scale, 0.01));
 
   // Soft, blurred reveal edge instead of a hard cut.
-  const fade = 520;
+  const fade = 220;
   const softMask = reduced
     ? "none"
     : `linear-gradient(to right, rgba(0,0,0,1) 0px, rgba(0,0,0,1) ${Math.max(
