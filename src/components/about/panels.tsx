@@ -464,6 +464,13 @@ export const blocks: Block[] = [
     ),
   },
   {
+    id: "skills-icons",
+    x: 7130,
+    y: 210,
+    w: 300,
+    node: <Shot src={IMG.communities} alt="Tools I use every day" w={290} h={140} />,
+  },
+  {
     id: "skills-caption",
     x: 6680,
     y: 560,
