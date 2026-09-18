@@ -87,26 +87,56 @@ function AboutSpread() {
     };
   }, []);
 
-  // Vertical wheel input drives horizontal travel on desktop.
+  // Lenis: smooth, eased horizontal travel driven by vertical wheel input.
   useEffect(() => {
     const el = scrollerRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      if (el.clientWidth < 768) return;
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
+    const content = el?.firstElementChild as HTMLElement | null;
+    if (!el || !content || reduced) return;
+
+    let alive = true;
+    let raf = 0;
+    let lenis: { raf: (t: number) => void; destroy: () => void; scrollTo: (t: number, o?: object) => void } | null =
+      null;
+
+    import("lenis").then(({ default: Lenis }) => {
+      if (!alive) return;
+      lenis = new Lenis({
+        wrapper: el,
+        content,
+        orientation: "horizontal",
+        gestureOrientation: "both",
+        smoothWheel: true,
+        lerp: 0.085,
+        wheelMultiplier: 1.1,
+        syncTouch: false,
+      }) as unknown as typeof lenis;
+      lenisRef.current = lenis;
+      const loop = (time: number) => {
+        lenis?.raf(time);
+        raf = requestAnimationFrame(loop);
+      };
+      raf = requestAnimationFrame(loop);
+    });
+
+    return () => {
+      alive = false;
+      if (raf) cancelAnimationFrame(raf);
+      lenis?.destroy();
+      lenisRef.current = null;
     };
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, []);
+  }, [reduced]);
 
   const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     const el = scrollerRef.current;
     if (!el) return;
     const step = el.clientWidth * 0.8;
-    if (e.key === "ArrowRight" || e.key === "PageDown") el.scrollLeft += step;
-    if (e.key === "ArrowLeft" || e.key === "PageUp") el.scrollLeft -= step;
+    let target = el.scrollLeft;
+    if (e.key === "ArrowRight" || e.key === "PageDown") target += step;
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") target -= step;
+    else return;
+    e.preventDefault();
+    if (lenisRef.current) lenisRef.current.scrollTo(target, { duration: 1.1 });
+    else el.scrollLeft = target;
   }, []);
 
   // How far the spread has been revealed, in canvas units.
