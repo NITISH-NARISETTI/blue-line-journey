@@ -206,8 +206,9 @@ function AboutSpread() {
                 decoding="async"
                 onLoad={() => setArtLoaded(true)}
                 className={`block select-none transition-opacity duration-700 ${
-                  artLoaded ? "opacity-100" : "opacity-0"
+                  artLoaded ? "opacity-100" : "opacity-40"
                 }`}
+
                 draggable={false}
               />
             </div>
