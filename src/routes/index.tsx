@@ -31,6 +31,7 @@ export const Route = createFileRoute("/")({
 
 function AboutSpread() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<{ scrollTo: (t: number, o?: object) => void } | null>(null);
   const [scrollX, setScrollX] = useState(0);
   const [viewport, setViewport] = useState(1280);
   const [scale, setScale] = useState(1);
