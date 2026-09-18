@@ -173,7 +173,7 @@ function AboutSpread() {
             {lineArt && (
               <svg
                 aria-hidden
-                className="pointer-events-none absolute left-0 top-0"
+                className="fade-in-soft pointer-events-none absolute left-0 top-0"
                 width={CANVAS.w}
                 height={CANVAS.h}
                 viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
@@ -217,8 +217,10 @@ function AboutSpread() {
               return (
                 <div
                   key={slot.id}
-                  className={`absolute transition-all duration-700 ease-out ${
-                    revealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                  className={`absolute transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    revealed
+                      ? "translate-y-0 scale-100 opacity-100 blur-0"
+                      : "translate-y-6 scale-[0.98] opacity-0 blur-[2px]"
                   }`}
                   style={{ left: slot.x, top: slot.y, zIndex: 2 }}
                 >
@@ -230,8 +232,9 @@ function AboutSpread() {
                         alt={s.alt}
                         loading="lazy"
                         decoding="async"
-                        className="absolute rounded-[2px] object-cover shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+                        className="fade-in-soft absolute rounded-[2px] object-cover shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
                         style={{
+                          animationDelay: `${i * 140}ms`,
                           left: s.x,
                           top: s.y,
                           width: s.w,
