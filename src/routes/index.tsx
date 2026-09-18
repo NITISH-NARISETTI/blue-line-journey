@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { chapters } from "@/components/about/chapters";
-import { slots } from "@/components/about/photos";
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 
@@ -211,43 +210,6 @@ function AboutSpread() {
               </svg>
             )}
 
-            {slots.map((slot) => {
-              const revealed = reduced || slot.x - 120 <= drawnTo;
-              const near = reduced || slot.x - viewport * 1.6 <= drawnTo;
-              return (
-                <div
-                  key={slot.id}
-                  className={`absolute transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    revealed
-                      ? "translate-y-0 scale-100 opacity-100 blur-0"
-                      : "translate-y-6 scale-[0.98] opacity-0 blur-[2px]"
-                  }`}
-                  style={{ left: slot.x, top: slot.y, zIndex: 2 }}
-                >
-                  {near &&
-                    slot.shots.map((s, i) => (
-                      <img
-                        key={`${slot.id}-${i}`}
-                        src={s.src}
-                        alt={s.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="fade-in-soft absolute rounded-[2px] object-cover shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
-                        style={{
-                          animationDelay: `${i * 140}ms`,
-                          left: s.x,
-                          top: s.y,
-                          width: s.w,
-                          height: s.h,
-                          maxWidth: "none",
-                          transform: s.rotate ? `rotate(${s.rotate}deg)` : undefined,
-                        }}
-                        draggable={false}
-                      />
-                    ))}
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
