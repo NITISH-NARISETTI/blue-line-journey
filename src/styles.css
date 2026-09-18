@@ -94,6 +94,9 @@
 }
 
 :root {
+  --paper: oklch(0.955 0.004 90);
+  --ink: oklch(0.18 0.01 260);
+  --electric: oklch(0.45 0.29 264);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
