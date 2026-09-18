@@ -210,7 +210,29 @@ function AboutSpread() {
                 }`}
                 draggable={false}
               />
+              {/* Reworded closing line, set live over the exported artwork */}
+              <div
+                aria-hidden
+                className="absolute select-none bg-[#EEEEEE]"
+                style={{
+                  left: 7298,
+                  top: 132,
+                  width: 400,
+                  height: 54,
+                  fontFamily: "Urbanist, sans-serif",
+                  fontSize: 19.5,
+                  lineHeight: "22px",
+                  color: "#111111",
+                  paddingLeft: 7,
+                  paddingTop: 5,
+                }}
+              >
+                Today, I&apos;m between brand,
+                <br />
+                visual communication, culture and technology.
+              </div>
             </div>
+
 
             {/* Grey copy of the ten line vectors, wiped away by the scroll front
                 so the blue underneath fills in from left to right. */}
