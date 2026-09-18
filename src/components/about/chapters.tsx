@@ -345,7 +345,7 @@ export const chapters: Chapter[] = [
           Good design starts before you open the software.
         </h2>
         <p className="mt-8 max-w-[440px] font-display text-xl font-light leading-snug">
-          Today, I&apos;m somewhere between brand, visual communication, culture and technology.
+          Today, I&apos;m between brand, visual communication, culture and technology.
         </p>
         <p className="mt-5 max-w-[440px] text-base leading-relaxed text-ink/60">
           I like identities that have personality. And work that feels like it came from a
