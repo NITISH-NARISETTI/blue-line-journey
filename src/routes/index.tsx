@@ -170,6 +170,7 @@ function AboutSpread() {
                         top: s.y,
                         width: s.w,
                         height: s.h,
+                        maxWidth: "none",
                         transform: s.rotate ? `rotate(${s.rotate}deg)` : undefined,
                       }}
                       draggable={false}
