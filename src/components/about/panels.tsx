@@ -465,10 +465,10 @@ export const blocks: Block[] = [
   },
   {
     id: "skills-icons",
-    x: 7130,
-    y: 210,
-    w: 300,
-    node: <Shot src={IMG.communities} alt="Tools I use every day" w={290} h={140} />,
+    x: 7060,
+    y: 230,
+    w: 260,
+    node: <Shot src={IMG.communities} alt="Tools I use every day" w={250} h={125} />,
   },
   {
     id: "skills-caption",
