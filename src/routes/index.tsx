@@ -120,7 +120,6 @@ function AboutTimeline() {
       <div
         ref={scrollerRef}
         tabIndex={0}
-        onWheel={onWheel}
         onKeyDown={onKeyDown}
         className="hide-scrollbar relative w-full outline-none md:h-screen md:overflow-x-auto md:overflow-y-hidden"
       >
