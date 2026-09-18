@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { SpineKind } from "./spine";
+type SpineKind = "loop" | "spike" | "tangle";
 
 const IMG = {
   profile:

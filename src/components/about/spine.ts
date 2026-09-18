@@ -1,58 +1,80 @@
-export type SpineKind = "loop" | "spike" | "tangle";
+/** The spread's fixed canvas, in design units. */
+export const CANVAS = { w: 8400, h: 700 };
 
-export type Anchor = {
-  id: string;
-  x: number;
-  y: number;
-  kind?: SpineKind;
-};
+/** Reference points (x, y) in canvas units that the dotted line travels through. */
+const K = 4.375; // reference image (1920px wide) -> canvas units
 
-/**
- * Builds one continuous, deliberately imperfect path through every anchor.
- * Wobble is derived from the anchor x so the curve is stable across renders.
- */
-export function buildSpinePath(anchors: Anchor[]): string {
-  const first = anchors[0];
-  if (!first) return "";
+const REF: [number, number][] = [
+  [110, 132],
+  [175, 141],
+  [240, 138],
+  [300, 22],
+  [352, 16],
+  [400, 44],
+  [452, 34],
+  [500, 26],
+  [548, 132],
+  [600, 150],
+  [652, 138],
+  [700, 30],
+  [742, 20],
+  [790, 40],
+  [830, 120],
+  [872, 148],
+  [920, 142],
+  [962, 34],
+  [1010, 44],
+  [1062, 30],
+  [1110, 48],
+  [1155, 138],
+  [1205, 150],
+  [1258, 140],
+  [1305, 40],
+  [1352, 18],
+  [1400, 60],
+  [1445, 128],
+  [1495, 136],
+  [1528, 34],
+  [1560, 24],
+  [1600, 120],
+  [1648, 136],
+  [1700, 130],
+  [1742, 34],
+  [1790, 22],
+  [1850, 40],
+];
 
-  let prev = { x: first.x - 340, y: first.y + 40 };
-  let d = `M ${prev.x} ${prev.y}`;
+export const LINE_POINTS: [number, number][] = REF.map(([x, y]) => [
+  Math.round(x * K),
+  Math.round(y * K),
+]);
 
-  anchors.forEach((a, i) => {
-    const dx = a.x - prev.x;
-    const sign = i % 2 === 0 ? -1 : 1;
-    const wob = 130 + ((Math.round(a.x) * 13) % 110);
+/** Milestone dots sit on a handful of the line points. */
+export const LINE_DOTS = [0, 5, 9, 13, 18, 23, 28, 32, LINE_POINTS.length - 1].map(
+  (i) => LINE_POINTS[Math.min(i, LINE_POINTS.length - 1)]!,
+);
 
-    // Two cubics per gap, through a swung mid-point: dips and rises rather
-    // than a straight run between milestones.
-    const midX = prev.x + dx * 0.52;
-    const midY = (prev.y + a.y) / 2 + sign * wob;
+/** Catmull-Rom through every point, emitted as one smooth cubic path. */
+export function buildWavePath(points: [number, number][]): string {
+  if (points.length < 2) return "";
+  const p = points;
+  let d = `M ${p[0]![0]} ${p[0]![1]}`;
 
-    d += ` C ${prev.x + dx * 0.26} ${prev.y + sign * wob * 0.5}, ${
-      midX - dx * 0.16
-    } ${midY}, ${midX} ${midY}`;
-    d += ` C ${midX + dx * 0.16} ${midY}, ${a.x - dx * 0.2} ${
-      a.y - sign * wob * 0.75
-    }, ${a.x} ${a.y}`;
+  for (let i = 0; i < p.length - 1; i++) {
+    const p0 = p[Math.max(0, i - 1)]!;
+    const p1 = p[i]!;
+    const p2 = p[i + 1]!;
+    const p3 = p[Math.min(p.length - 1, i + 2)]!;
 
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
 
-    if (a.kind === "loop") {
-      d += ` a 46 46 0 1 1 10 3`;
-      prev = { x: a.x + 10, y: a.y + 3 };
-    } else if (a.kind === "spike") {
-      d += ` l 44 -164 l 48 164`;
-      prev = { x: a.x + 92, y: a.y };
-    } else if (a.kind === "tangle") {
-      d += ` c 55 -75 125 75 180 0 c 55 -75 125 75 180 0 c 40 -40 90 40 130 6`;
-      prev = { x: a.x + 490, y: a.y + 6 };
-    } else {
-      prev = { x: a.x, y: a.y };
-    }
-  });
-
-  d += ` C ${prev.x + 120} ${prev.y + 70}, ${prev.x + 220} ${prev.y - 40}, ${
-    prev.x + 340
-  } ${prev.y + 10}`;
+    d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(
+      1,
+    )}, ${p2[0]} ${p2[1]}`;
+  }
 
   return d;
 }
