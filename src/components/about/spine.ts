@@ -21,11 +21,20 @@ export function buildSpinePath(anchors: Anchor[]): string {
   anchors.forEach((a, i) => {
     const dx = a.x - prev.x;
     const sign = i % 2 === 0 ? -1 : 1;
-    const wob = 60 + ((Math.round(a.x) * 13) % 70);
+    const wob = 130 + ((Math.round(a.x) * 13) % 110);
 
-    d += ` C ${prev.x + dx * 0.34} ${prev.y + sign * wob}, ${a.x - dx * 0.34} ${
-      a.y - sign * wob * 0.8
+    // Two cubics per gap, through a swung mid-point: dips and rises rather
+    // than a straight run between milestones.
+    const midX = prev.x + dx * 0.52;
+    const midY = (prev.y + a.y) / 2 + sign * wob;
+
+    d += ` C ${prev.x + dx * 0.26} ${prev.y + sign * wob * 0.5}, ${
+      midX - dx * 0.16
+    } ${midY}, ${midX} ${midY}`;
+    d += ` C ${midX + dx * 0.16} ${midY}, ${a.x - dx * 0.2} ${
+      a.y - sign * wob * 0.75
     }, ${a.x} ${a.y}`;
+
 
     if (a.kind === "loop") {
       d += ` a 46 46 0 1 1 10 3`;
