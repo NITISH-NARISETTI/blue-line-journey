@@ -198,6 +198,9 @@ function AboutSpread() {
               }}
             >
               <img
+                ref={(el) => {
+                  if (el?.complete) setArtLoaded(true);
+                }}
                 src={strip.url}
                 alt=""
                 aria-hidden
@@ -205,12 +208,10 @@ function AboutSpread() {
                 height={CANVAS.h}
                 decoding="async"
                 onLoad={() => setArtLoaded(true)}
-                className={`block select-none transition-opacity duration-700 ${
-                  artLoaded ? "opacity-100" : "opacity-40"
-                }`}
-
+                className="block select-none"
                 draggable={false}
               />
+
             </div>
 
             {/* Animated guide line: marches along and draws itself with the reveal */}
