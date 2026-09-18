@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { chapters } from "@/components/about/chapters";
 import { slots } from "@/components/about/photos";
-import { sections } from "@/components/about/sections";
 import strip from "@/assets/about-me-strip.svg.asset.json";
+import lines from "@/assets/about-me-lines.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -37,6 +37,7 @@ function AboutSpread() {
   const [scale, setScale] = useState(1);
   const [reduced, setReduced] = useState(false);
   const [artLoaded, setArtLoaded] = useState(false);
+  const [lineArt, setLineArt] = useState("");
 
   const trackWidth = CANVAS.w * scale;
 
@@ -46,6 +47,22 @@ function AboutSpread() {
     const onChange = () => setReduced(mq.matches);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // The ten line vectors, loaded separately so they can be recoloured on scroll.
+  useEffect(() => {
+    let alive = true;
+    fetch(lines.url)
+      .then((r) => r.text())
+      .then((text) => {
+        if (!alive) return;
+        const inner = text.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+        setLineArt(inner);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -93,83 +110,19 @@ function AboutSpread() {
     if (e.key === "ArrowLeft" || e.key === "PageUp") el.scrollLeft -= step;
   }, []);
 
-  const goTo = useCallback(
-    (x: number) => {
-      const el = scrollerRef.current;
-      if (!el) return;
-      const target = Math.max(0, x * scale - el.clientWidth * 0.12);
-      el.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
-    },
-    [scale, reduced],
-  );
-
   // How far the spread has been revealed, in canvas units.
   const drawnTo = reduced
     ? CANVAS.w
     : Math.max(0, (scrollX + viewport * 0.85) / Math.max(scale, 0.01));
-  const progress = Math.min(
-    1,
-    trackWidth > viewport ? scrollX / (trackWidth - viewport) : 1,
-  );
 
-  // Section currently centred in the window.
-  const activeIndex = useMemo(() => {
-    const centre = (scrollX + viewport * 0.4) / Math.max(scale, 0.01);
-    let idx = 0;
-    sections.forEach((s, i) => {
-      if (s.x <= centre) idx = i;
-    });
-    return idx;
-  }, [scrollX, viewport, scale]);
+  // Where the grey-to-blue colour front currently sits.
+  const front = reduced
+    ? CANVAS.w + 1200
+    : Math.max(0, (scrollX + viewport * 0.55) / Math.max(scale, 0.01));
 
   return (
     <main className="relative bg-[#EEEEEE] text-ink">
       <h1 className="sr-only">About me — a designer's timeline</h1>
-
-      {/* Progress rail with a marker per chapter */}
-      <div className="fixed left-0 top-0 z-30 hidden w-full md:block">
-        <div className="relative h-[3px] w-full bg-ink/10">
-          <div
-            className="h-full bg-electric transition-[width] duration-150 ease-out"
-            style={{ width: `${progress * 100}%` }}
-          />
-          {sections.map((s) => (
-            <span
-              key={`tick-${s.id}`}
-              aria-hidden
-              className={`absolute top-0 h-[3px] w-[2px] ${
-                s.x / CANVAS.w <= progress ? "bg-electric" : "bg-ink/25"
-              }`}
-              style={{ left: `${(s.x / CANVAS.w) * 100}%` }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Compact chapter navigation */}
-      <nav
-        aria-label="Timeline sections"
-        className="fixed bottom-6 left-1/2 z-30 hidden max-w-[92vw] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-full border border-ink/10 bg-[#EEEEEE]/85 px-2 py-1.5 backdrop-blur md:flex"
-      >
-        {sections.map((s, i) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => goTo(s.x)}
-            aria-current={i === activeIndex ? "true" : undefined}
-            className={`whitespace-nowrap rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors ${
-              i === activeIndex
-                ? "bg-electric text-white"
-                : "text-ink/55 hover:text-ink"
-            }`}
-          >
-            {s.label}
-          </button>
-        ))}
-        <span className="ml-1 pr-2 font-mono text-[10px] tabular-nums text-ink/40">
-          {Math.round(progress * 100)}%
-        </span>
-      </nav>
 
       {/* Desktop: the exported spread on one canvas, scrolled sideways */}
       <div
@@ -215,38 +168,47 @@ function AboutSpread() {
               />
             </div>
 
-
-            {/* Animated guide line: marches along and draws itself with the reveal */}
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute left-0 top-0"
-              width={CANVAS.w}
-              height={CANVAS.h}
-              viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
-              style={{ zIndex: 1 }}
-            >
-              <path
-                d={`M0 ${CANVAS.h - 40} H ${CANVAS.w}`}
-                fill="none"
-                stroke="var(--color-electric, #0000FF)"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeDasharray="10 14"
-                className="marching-line"
-                style={{
-                  clipPath: `inset(0 ${Math.max(0, CANVAS.w - drawnTo)}px 0 0)`,
-                  opacity: 0.45,
-                }}
-              />
-            </svg>
-
-            {/* The drawing head at the reveal edge */}
-            {!reduced && drawnTo < CANVAS.w && (
-              <span
+            {/* Grey copy of the ten line vectors, wiped away by the scroll front
+                so the blue underneath fills in from left to right. */}
+            {lineArt && (
+              <svg
                 aria-hidden
-                className="reveal-edge absolute top-0 block w-[2px] bg-electric/50"
-                style={{ left: drawnTo, height: CANVAS.h, zIndex: 3 }}
-              />
+                className="pointer-events-none absolute left-0 top-0"
+                width={CANVAS.w}
+                height={CANVAS.h}
+                viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
+                style={{
+                  zIndex: 1,
+                  clipPath: `inset(0 ${Math.max(0, CANVAS.w - drawnTo)}px 0 0)`,
+                }}
+              >
+                <defs>
+                  <linearGradient
+                    id="line-sweep"
+                    gradientUnits="userSpaceOnUse"
+                    x1={front - 420}
+                    y1={0}
+                    x2={front + 220}
+                    y2={0}
+                  >
+                    <stop offset="0%" stopColor="black" />
+                    <stop offset="100%" stopColor="white" />
+                  </linearGradient>
+                  <mask id="line-sweep-mask">
+                    <rect
+                      x={0}
+                      y={0}
+                      width={CANVAS.w}
+                      height={CANVAS.h}
+                      fill="url(#line-sweep)"
+                    />
+                  </mask>
+                </defs>
+                <g
+                  mask="url(#line-sweep-mask)"
+                  dangerouslySetInnerHTML={{ __html: lineArt }}
+                />
+              </svg>
             )}
 
             {slots.map((slot) => {
