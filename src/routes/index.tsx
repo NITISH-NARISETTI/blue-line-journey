@@ -177,7 +177,8 @@ function AboutSpread() {
               style={{
                 width: CANVAS.w,
                 height: CANVAS.h,
-                clipPath: `inset(0 ${Math.max(0, CANVAS.w - drawnTo)}px 0 0)`,
+                maskImage: softMask,
+                WebkitMaskImage: softMask,
               }}
             >
               <img
@@ -209,7 +210,8 @@ function AboutSpread() {
                 viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
                 style={{
                   zIndex: 1,
-                  clipPath: `inset(0 ${Math.max(0, CANVAS.w - drawnTo)}px 0 0)`,
+                  maskImage: softMask,
+                  WebkitMaskImage: softMask,
                 }}
               >
                 <defs>
