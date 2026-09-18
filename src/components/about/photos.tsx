@@ -11,8 +11,6 @@ const IMG = {
   club: "https://api.builder.io/api/v1/image/assets/TEMP/6dc39353b11086ac172d827c5319cae82ae42a9a?placeholderIfAbsent=true",
   config:
     "https://api.builder.io/api/v1/image/assets/TEMP/3593c9a8499387278f8b1cd792e2ce03fa0d5d08?placeholderIfAbsent=true",
-  communities:
-    "https://api.builder.io/api/v1/image/assets/TEMP/59fe410b677e00911001bee0a035f42c54f94a66?placeholderIfAbsent=true",
 };
 
 export type Shot = {
@@ -76,14 +74,6 @@ export const slots: Slot[] = [
     y: 230,
     shots: [
       { src: IMG.config, alt: "Config24 Hyderabad event design", x: 0, y: 0, w: 230, h: 170, rotate: -2.5 },
-    ],
-  },
-  {
-    id: "communities",
-    x: 5250,
-    y: 240,
-    shots: [
-      { src: IMG.communities, alt: "Design and tech community event in Hyderabad", x: 0, y: 0, w: 280, h: 200, rotate: 1.5 },
     ],
   },
   {
