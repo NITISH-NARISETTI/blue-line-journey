@@ -211,8 +211,14 @@ function AboutSpread() {
                 className="block select-none"
                 draggable={false}
               />
-
+              {!artLoaded && (
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-1/2 block h-[2px] w-full animate-pulse bg-ink/10"
+                />
+              )}
             </div>
+
 
             {/* Animated guide line: marches along and draws itself with the reveal */}
             <svg
