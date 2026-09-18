@@ -171,8 +171,8 @@ function AboutTimeline() {
 
           {/* Chapters */}
           {chapters.map((c, i) => {
-            const anchor = anchors[i];
-            const revealed = reduced || anchor.x - 260 <= drawnTo;
+            const anchorX = anchors[i]?.x ?? 0;
+            const revealed = reduced || anchorX - 260 <= drawnTo;
             return (
               <section
                 key={c.id}
