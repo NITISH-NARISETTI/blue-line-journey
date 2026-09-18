@@ -169,10 +169,15 @@ export const blocks: Block[] = [
   },
   {
     id: "podcast-art",
-    x: 2570,
+    x: 2530,
     y: 230,
-    w: 260,
-    node: <Shot src={IMG.podcast} alt="University podcast artwork" w={250} h={250} rotate={-1} />,
+    w: 420,
+    node: (
+      <div className="flex items-end gap-4">
+        <Shot src={IMG.podcast} alt="University podcast artwork" w={220} h={220} rotate={-2} />
+        <Shot src={IMG.studio} alt="Recording an episode on air" w={185} h={140} rotate={3} />
+      </div>
+    ),
   },
   {
     id: "podcast-caption",
@@ -238,7 +243,7 @@ export const blocks: Block[] = [
     node: (
       <div className="flex flex-col items-center">
         <span className="h-[150px] w-[14px] bg-ink" />
-        <Shot src={IMG.club} alt="Event badge" w={130} h={190} />
+        <Shot src={IMG.cieMore} alt="Event poster set" w={130} h={190} />
       </div>
     ),
   },
@@ -302,8 +307,8 @@ export const blocks: Block[] = [
     w: 420,
     node: (
       <div className="flex items-end gap-4">
-        <Shot src={IMG.config} alt="Config24 HYD event" w={250} h={150} />
-        <Shot src={IMG.studio} alt="Config24 signage" w={130} h={175} rotate={2} />
+        <Shot src={IMG.club} alt="Config24 HYD audience" w={250} h={150} />
+        <Shot src={IMG.config} alt="Friends of Figma Hyderabad signage" w={130} h={190} rotate={2} />
       </div>
     ),
   },
@@ -339,7 +344,7 @@ export const blocks: Block[] = [
     x: 5000,
     y: 245,
     w: 260,
-    node: <Shot src={IMG.studio} alt="Deezign studio poster" w={255} h={250} />,
+    node: <Shot src={IMG.profile} alt="Studio Deezign mark" w={250} h={250} className="!object-contain" />,
   },
   {
     id: "deezign-caption",
@@ -400,9 +405,9 @@ export const blocks: Block[] = [
     w: 460,
     node: (
       <div className="flex items-end gap-4">
-        <Shot src={IMG.communities} alt="Merch design" w={130} h={175} rotate={-8} />
-        <Shot src={IMG.club} alt="Poster set" w={150} h={195} rotate={4} />
-        <Shot src={IMG.levyug} alt="Print work" w={140} h={185} rotate={-3} />
+        <Shot src={IMG.cieMore} alt="Merch and poster design" w={150} h={175} rotate={-8} />
+        <Shot src={IMG.club} alt="Community event" w={160} h={195} rotate={4} />
+        <Shot src={IMG.cie} alt="Print work" w={150} h={185} rotate={-3} />
       </div>
     ),
   },
