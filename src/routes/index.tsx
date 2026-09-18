@@ -208,15 +208,11 @@ function AboutSpread() {
                 height={CANVAS.h}
                 decoding="async"
                 onLoad={() => setArtLoaded(true)}
-                className="block select-none"
+                className={`block select-none transition-opacity duration-1000 ease-out ${
+                  artLoaded ? "opacity-100" : "opacity-0"
+                }`}
                 draggable={false}
               />
-              {!artLoaded && (
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-1/2 block h-[2px] w-full animate-pulse bg-ink/10"
-                />
-              )}
             </div>
 
 
