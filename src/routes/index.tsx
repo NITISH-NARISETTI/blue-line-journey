@@ -83,11 +83,17 @@ function AboutTimeline() {
   }, []);
 
   // Translate vertical wheel input into horizontal travel (desktop only).
-  const onWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
+  useEffect(() => {
     const el = scrollerRef.current;
-    if (!el || el.clientWidth < 768) return;
-    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-    el.scrollLeft += e.deltaY;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (el.clientWidth < 768) return;
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
   }, []);
 
   const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
