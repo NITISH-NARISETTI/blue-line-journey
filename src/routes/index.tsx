@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { chapters } from "@/components/about/chapters";
+import { Reveal } from "@/components/about/reveal";
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 
@@ -299,10 +300,12 @@ function AboutSpread() {
             aria-label={c.id}
             className="relative border-b border-ink/10 px-6 py-14"
           >
-            <span className="mb-5 block font-mono text-[11px] tracking-[0.3em] text-electric">
-              {c.marker}
-            </span>
-            {c.content}
+            <Reveal>
+              <span className="mb-5 block font-mono text-[11px] tracking-[0.3em] text-electric">
+                {c.marker}
+              </span>
+            </Reveal>
+            <Reveal delay={120}>{c.content}</Reveal>
             <span
               aria-hidden
               className="absolute left-2 top-0 block h-full border-l-2 border-dotted border-electric/50"
