@@ -289,3 +289,11 @@
     animation: none;
   }
 }
+
+/* Captions that float beside desktop photos sit inline on mobile. */
+.mobile-chapter .absolute {
+  position: static;
+  display: block;
+  margin-top: 0.75rem;
+  white-space: nowrap;
+}
