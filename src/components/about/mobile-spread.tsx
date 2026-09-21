@@ -53,9 +53,9 @@ export function MobileSpread() {
       setSize({ w, h });
       setViewH(window.innerHeight);
       const pts = sectionRefs.current.map((el, i) => {
-        const lane = LANES[i % LANES.length] * w;
-        if (!el) return { x: lane, y: (h / chapters.length) * (i + 0.5) };
-        return { x: lane, y: el.offsetTop + el.offsetHeight * 0.32 };
+        const x = lane(i) * w;
+        if (!el) return { x, y: (h / chapters.length) * (i + 0.5) };
+        return { x, y: el.offsetTop + el.offsetHeight * 0.32 };
       });
       setAnchors(pts);
     };
@@ -104,11 +104,11 @@ export function MobileSpread() {
         drawnTo,
       )}px)`;
 
-  const points = anchors.length
+  const points: Pt[] = anchors.length
     ? [
-        { x: anchors[0].x, y: 0 },
+        { x: anchors[0]!.x, y: 0 },
         ...anchors,
-        { x: anchors[anchors.length - 1].x, y: size.h },
+        { x: anchors[anchors.length - 1]!.x, y: size.h },
       ]
     : [];
   const d = buildPath(points);
@@ -186,7 +186,7 @@ export function MobileSpread() {
             aria-label={c.id}
             className="px-6 py-16"
             style={{
-              paddingLeft: `${(LANES[i % LANES.length] + 0.1) * 100}%`,
+              paddingLeft: `${(lane(i) + 0.1) * 100}%`,
               paddingRight: i % 2 === 0 ? "1.25rem" : "2.5rem",
             }}
           >
