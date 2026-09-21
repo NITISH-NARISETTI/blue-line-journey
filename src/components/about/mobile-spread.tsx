@@ -176,26 +176,30 @@ export function MobileSpread() {
         <span className="text-electric">↓</span>
       </div>
 
-      <div className="relative z-10 pt-24">
+      <div className="relative z-10 pt-28">
         {chapters.map((c, i) => (
           <section
             key={c.id}
             ref={(el) => {
               sectionRefs.current[i] = el;
             }}
-            aria-label={c.id}
-            className="px-6 py-16"
+            aria-labelledby={`chapter-${c.id}`}
+            className="px-6 py-24"
             style={{
               paddingLeft: `${(lane(i) + 0.1) * 100}%`,
               paddingRight: i % 2 === 0 ? "1.25rem" : "2.5rem",
             }}
           >
             <Reveal>
-              <span className="mb-4 block font-mono text-[11px] tracking-[0.3em] text-electric">
-                {c.marker}
-              </span>
+              <h2
+                id={`chapter-${c.id}`}
+                className="mb-6 font-mono text-[10px] font-normal tracking-[0.34em] text-electric"
+              >
+                <span aria-hidden>{c.marker}</span>
+                <span className="sr-only">{`Chapter ${c.marker} — ${TITLES[c.id] ?? c.id}`}</span>
+              </h2>
             </Reveal>
-            <Reveal delay={140}>
+            <Reveal delay={reduced ? 0 : 140}>
               <div className="mobile-chapter">{c.content}</div>
             </Reveal>
           </section>
