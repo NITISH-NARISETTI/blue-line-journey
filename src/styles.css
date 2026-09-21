@@ -230,8 +230,23 @@
 
 .mobile-chapter h1,
 .mobile-chapter h2 {
-  font-size: 2rem;
+  font-size: 1.85rem;
   line-height: 1.08;
+}
+
+.mobile-chapter p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.mobile-chapter .font-display {
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.mobile-chapter h1.font-display,
+.mobile-chapter h2.font-display {
+  font-size: 1.85rem;
 }
 
 
