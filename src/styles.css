@@ -230,23 +230,55 @@
 
 .mobile-chapter h1,
 .mobile-chapter h2 {
-  font-size: 1.85rem;
-  line-height: 1.08;
+  font-size: 1.45rem;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
 }
 
 .mobile-chapter p {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .mobile-chapter .font-display {
-  font-size: 1.45rem;
-  line-height: 1.2;
+  font-size: 1.15rem;
+  line-height: 1.35;
 }
 
 .mobile-chapter h1.font-display,
 .mobile-chapter h2.font-display {
-  font-size: 1.85rem;
+  font-size: 1.45rem;
+}
+
+/* Breathing room between the stacked paragraphs. */
+.mobile-chapter > div > * + * {
+  margin-top: 1.15rem;
+}
+
+.mobile-chapter .text-\[11px\],
+.mobile-chapter .text-\[10px\] {
+  font-size: 0.625rem;
+  letter-spacing: 0.34em;
+}
+
+.mobile-chapter span[class*="rounded-full"] {
+  font-size: 0.8rem;
+  padding: 0.6rem 0.95rem;
+}
+
+/* Touch-friendly links inside the mobile timeline. */
+.mobile-chapter a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.25rem;
+}
+
+.mobile-chapter a:focus-visible,
+.mobile-chapter :focus-visible {
+  outline: 2px solid var(--color-electric, #0000ff);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 
