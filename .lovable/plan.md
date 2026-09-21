@@ -1,40 +1,50 @@
-# Cleaner spread: animated blue line, no chrome
+# Mobile: the same journey, top to bottom
 
-Three changes to the horizontal "About me" page.
+Phones currently get a plain stacked list with a dotted border down the left. It
+is rebuilt as a proper vertical version of the spread, with the same paper
+background, the same type, and the same blue line — only turned 90 degrees.
 
-## 1. Remove the reveal edge
+## How it works
 
-The thin pulsing blue vertical bar that sits at the edge of the revealed
-artwork is removed. The left-to-right reveal of the spread itself stays as it
-is — only the marker line disappears.
+- One continuous dotted electric-blue line runs down the page, slightly off to
+  the left, hand-drawn in feel: it bends left and right between chapters rather
+  than running dead straight.
+- The line draws itself as you scroll. Above your position it is fully blue;
+  below it sits in the same muted grey the desktop line starts from, so colour
+  fills in downward as you travel — the same grey-to-blue front, rotated.
+- Each stage is revealed as it enters view: the line reaches a small blue dot at
+  the chapter, then the chapter's text fades and lifts in, so stages are
+  discovered one at a time instead of all being visible at once.
+- A soft gradient edge sits just below your position so upcoming content washes
+  in gently, matching the desktop reveal.
+- A "Scroll ↓" hint at the top, fading out once you start.
+- Smooth scrolling on touch, and motion is fully disabled for visitors who ask
+  for reduced motion — everything is simply visible.
 
-## 2. Remove the progress rail and the chapter bar
+## Layout and content
 
-- The thin progress bar pinned along the top of the window goes away.
-- The rounded chapter bar at the bottom (Start, Podcast, CIE, ... with the
-  percentage counter) goes away.
-
-The "Scroll →" hint at the start stays, so first-time visitors still know the
-page moves sideways.
-
-## 3. Animate the blue line
-
-The blue dashed line is part of the exported artwork, which is a flat picture —
-its dashes cannot move on their own. So the animation lives on the blue guide
-line already drawn on top of the artwork: its dashes travel continuously to the
-right, and the line keeps drawing itself forward as you scroll, so it reads as
-one live hand-drawn stroke. Motion is disabled for visitors who ask for reduced
-motion.
+- Same 12 chapters, same words, in the same order.
+- Chapters alternate their horizontal placement slightly around the line, some
+  wider, some narrower, keeping the uneven magazine rhythm rather than a tidy
+  list.
+- Small chapter markers (00–11) in the blue, set in the same small-caps spacing
+  used on desktop.
+- No photos, matching the desktop spread.
+- Desktop stays exactly as it is.
 
 ## Technical notes
 
-- `src/routes/index.tsx`: delete the fixed progress rail block, the
-  `nav[aria-label="Timeline sections"]` block, and the `reveal-edge` span.
-  Drop the now-unused `goTo`, `activeIndex`, `progress` and `sections` import.
-- Keep the existing `drawnTo` clip-path reveal on the artwork and on the
-  overlay `<svg>` path.
-- The overlay path keeps `.marching-line` (`march-dash` keyframes in
-  `src/styles.css`), with the dash travel slowed slightly and opacity raised so
-  it reads clearly against the artwork.
-- `src/components/about/sections.ts` becomes unused; leave the file in place in
-  case section jumps come back later.
+- New `src/components/about/mobile-spread.tsx` holding the vertical timeline;
+  `src/routes/index.tsx` renders it in place of the current `md:hidden` block
+  and keeps the desktop branch untouched.
+- The line is one inline SVG path in a tall, viewport-width coordinate space,
+  positioned `fixed`/`sticky` behind the content and sized to the full document
+  height; chapter y-anchors are derived from measured section offsets so dots
+  always land on their chapter.
+- Reveal uses the existing `Reveal` component plus a vertical gradient
+  `maskImage` on the line SVG driven by `window.scrollY`, mirroring `drawnTo` /
+  `front` from the desktop route.
+- Grey `#4E5875` → `#0000FF` handled with a vertical `linearGradient` mask, same
+  approach as the desktop overlay.
+- Line dash styling reuses the existing dashed stroke look; `march-dash` stays
+  available but is not required.
