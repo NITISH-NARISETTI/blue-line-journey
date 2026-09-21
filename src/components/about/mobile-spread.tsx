@@ -6,6 +6,22 @@ import { Reveal } from "@/components/about/reveal";
 /** Horizontal placement of the line at each chapter, as a fraction of width. */
 const LANES = [0.16, 0.3, 0.12, 0.34, 0.2, 0.36, 0.14, 0.32, 0.18, 0.34, 0.15, 0.26];
 
+/** Readable chapter names for screen readers. */
+const TITLES: Record<string, string> = {
+  opening: "Somewhere between the sketchbook and the classroom",
+  "normal-decision": "A very normal decision",
+  podcast: "Starting a university podcast",
+  cie: "Joining CIE as a design member",
+  levyug: "Levyug national design competition",
+  "giving-back": "Giving back to the college club",
+  config24: "Designing for Config24 HYD",
+  deezign: "Starting the Deezign studio",
+  communities: "Designing for Hyderabad communities",
+  variance: "Variance deep-tech residency",
+  skills: "What I picked up along the way",
+  closing: "Where I am today",
+};
+
 type Pt = { x: number; y: number };
 
 function lane(i: number) {
@@ -176,26 +192,30 @@ export function MobileSpread() {
         <span className="text-electric">↓</span>
       </div>
 
-      <div className="relative z-10 pt-24">
+      <div className="relative z-10 pt-28">
         {chapters.map((c, i) => (
           <section
             key={c.id}
             ref={(el) => {
               sectionRefs.current[i] = el;
             }}
-            aria-label={c.id}
-            className="px-6 py-16"
+            aria-labelledby={`chapter-${c.id}`}
+            className="px-6 py-24"
             style={{
               paddingLeft: `${(lane(i) + 0.1) * 100}%`,
               paddingRight: i % 2 === 0 ? "1.25rem" : "2.5rem",
             }}
           >
             <Reveal>
-              <span className="mb-4 block font-mono text-[11px] tracking-[0.3em] text-electric">
-                {c.marker}
-              </span>
+              <h2
+                id={`chapter-${c.id}`}
+                className="mb-6 font-mono text-[10px] font-normal tracking-[0.34em] text-electric"
+              >
+                <span aria-hidden>{c.marker}</span>
+                <span className="sr-only">{`Chapter ${c.marker} — ${TITLES[c.id] ?? c.id}`}</span>
+              </h2>
             </Reveal>
-            <Reveal delay={140}>
+            <Reveal delay={reduced ? 0 : 140}>
               <div className="mobile-chapter">{c.content}</div>
             </Reveal>
           </section>
