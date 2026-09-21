@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { chapters } from "@/components/about/chapters";
 import { Reveal } from "@/components/about/reveal";
+import { MobileSpread } from "@/components/about/mobile-spread";
+
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 
