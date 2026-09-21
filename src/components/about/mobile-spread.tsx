@@ -6,12 +6,19 @@ import { Reveal } from "@/components/about/reveal";
 /** Horizontal placement of the line at each chapter, as a fraction of width. */
 const LANES = [0.16, 0.3, 0.12, 0.34, 0.2, 0.36, 0.14, 0.32, 0.18, 0.34, 0.15, 0.26];
 
-function buildPath(points: { x: number; y: number }[]) {
+type Pt = { x: number; y: number };
+
+function lane(i: number) {
+  return LANES[i % LANES.length] ?? 0.2;
+}
+
+function buildPath(points: Pt[]) {
   if (points.length < 2) return "";
-  let d = `M ${points[0].x} ${points[0].y}`;
+  const first = points[0]!;
+  let d = `M ${first.x} ${first.y}`;
   for (let i = 1; i < points.length; i++) {
-    const prev = points[i - 1];
-    const cur = points[i];
+    const prev = points[i - 1]!;
+    const cur = points[i]!;
     const dy = (cur.y - prev.y) / 2;
     d += ` C ${prev.x} ${prev.y + dy}, ${cur.x} ${cur.y - dy}, ${cur.x} ${cur.y}`;
   }
