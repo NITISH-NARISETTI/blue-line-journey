@@ -217,6 +217,24 @@
   animation: edge-pulse 2s ease-in-out infinite;
 }
 
+/* Mobile chapters reuse the desktop copy, but without the photos or the
+   side-by-side panel layout. */
+.mobile-chapter img {
+  display: none;
+}
+
+.mobile-chapter > div {
+  display: block;
+  height: auto;
+}
+
+.mobile-chapter h1,
+.mobile-chapter h2 {
+  font-size: 2rem;
+  line-height: 1.08;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .fade-in-soft,
   .marching-line,
