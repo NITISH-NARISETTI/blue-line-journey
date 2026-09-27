@@ -253,7 +253,7 @@ function AboutSpread() {
 
               {/* CIE event posters */}
               <Reveal
-                className="absolute left-[3040px] top-[236px] z-10 w-[380px]"
+                className="absolute left-[2990px] top-[228px] z-10 w-[480px]"
                 root={scrollerRef.current}
               >
                 <img
@@ -262,7 +262,7 @@ function AboutSpread() {
                   loading="lazy"
                   draggable={false}
                   className="pointer-events-none select-none"
-                  style={{ display: "block", width: 380, maxWidth: "none", height: "auto" }}
+                  style={{ display: "block", width: 480, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
