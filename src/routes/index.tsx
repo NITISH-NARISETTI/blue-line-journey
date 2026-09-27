@@ -439,7 +439,7 @@ function AboutSpread() {
               {/* Skills closing line, realigned to the tool icons' left edge */}
               <div
                 className="absolute select-none bg-[#EEEEEE]"
-                style={{ left: 6660, top: 540, width: 200, height: 58, fontFamily: "Urbanist, sans-serif" }}
+                style={{ left: 6660, top: 540, width: 206, height: 58, fontFamily: "Urbanist, sans-serif" }}
               >
                 <p style={{ marginLeft: -2, marginTop: 4, fontSize: 11, lineHeight: "14px", color: "#4E5875" }}>
                   And probably the most important one
