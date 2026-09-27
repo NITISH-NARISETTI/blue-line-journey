@@ -237,7 +237,7 @@ function AboutSpread() {
 
               {/* Spotlight podcast covers, fades in when scrolled into view */}
               <Reveal
-                className="absolute left-[2460px] top-[262px] z-10 w-[360px]"
+                className="absolute left-[2570px] top-[258px] z-10 w-[360px]"
                 root={scrollerRef.current}
               >
                 <img
