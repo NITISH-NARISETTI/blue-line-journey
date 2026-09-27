@@ -11,6 +11,7 @@ import { ProfileCard } from "@/components/about/profile-card";
 import { Sketchbook } from "@/components/about/sketchbook";
 import engineering from "@/assets/engineering.png.asset.json";
 import spotlight from "@/assets/spotlight.png.asset.json";
+import cie from "@/assets/cie.png.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -247,6 +248,21 @@ function AboutSpread() {
                   draggable={false}
                   className="pointer-events-none select-none"
                   style={{ display: "block", width: 270, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
+
+              {/* CIE event posters */}
+              <Reveal
+                className="absolute left-[2950px] top-[300px] z-10 w-[380px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={cie.url}
+                  alt="CIE event posters: Innovation Challenge, Meta Loop hackathon and Business Brand"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 380, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
