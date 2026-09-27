@@ -1,11 +1,11 @@
-import profileCard from "@/assets/profile-card.svg.asset.json";
+import aboutTitle from "@/assets/about-me-title.svg.asset.json";
 
-/** Position of the card on the 8400x700 canvas. */
-const CARD = { left: 492, top: 198, width: 206, height: 264 };
+/** Position of the new "about me" title artwork on the 8400x700 canvas. */
+const TITLE = { left: -4, top: 196, width: 1224, height: 322 };
 
 /**
- * The portrait card on the opening panel. A grey patch sits underneath so the
- * old stamp baked into the exported strip never peeks out while the card tilts.
+ * Opening "about me" title with portrait stamp. A grey patch hides the old
+ * title baked into the exported strip.
  */
 export function ProfileCard() {
   return (
@@ -13,21 +13,16 @@ export function ProfileCard() {
       <div
         aria-hidden
         className="absolute z-[5] bg-[#EEEEEE]"
-        style={{
-          left: CARD.left - 6,
-          top: CARD.top - 6,
-          width: CARD.width + 12,
-          height: CARD.height + 12,
-        }}
+        style={{ left: 0, top: 180, width: 1180, height: 340 }}
       />
       <img
-        src={profileCard.url}
-        alt="Portrait of Nitish Narisetti"
-        width={CARD.width}
-        height={CARD.height}
+        src={aboutTitle.url}
+        alt="About me — portrait of Nitish Narisetti. CS engineer turned designer who specialises in crafting empathetic experiences for delight and function."
+        width={TITLE.width}
+        height={TITLE.height}
         draggable={false}
-        className="absolute z-10 cursor-pointer select-none will-change-transform transition-transform duration-[900ms] ease-[cubic-bezier(0.34,1.36,0.64,1)] hover:rotate-[12.5deg] motion-reduce:transition-none motion-reduce:hover:rotate-0"
-        style={{ ...CARD, maxWidth: "none" }}
+        className="absolute z-10 select-none"
+        style={{ ...TITLE, maxWidth: "none" }}
       />
     </>
   );
