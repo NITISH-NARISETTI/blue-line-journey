@@ -489,10 +489,10 @@ function AboutSpread() {
                       style={{ maxWidth: "none" }}
                     />
                   </div>
-                  <p className="mt-3 text-center font-sans text-[14px] leading-[18px] text-ink/70">
-                    i am also skilled in making spider-man rangoli, you should definitely hire me
-                  </p>
                 </div>
+                <p className="mt-[28px] text-center font-sans text-[14px] leading-[18px] text-ink/70">
+                  Fun fact: I make Spider-Man rangolis. My resume doesn&apos;t mention it, but maybe it should.
+                </p>
               </Reveal>
             </div>
 
