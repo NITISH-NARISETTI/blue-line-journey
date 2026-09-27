@@ -254,7 +254,7 @@ function AboutSpread() {
 
               {/* CIE event posters */}
               <Reveal
-                className="absolute left-[2990px] top-[228px] z-10 w-[480px]"
+                className="absolute left-[2952px] top-[242px] z-10 w-[557px]"
                 root={scrollerRef.current}
               >
                 <img
@@ -263,9 +263,29 @@ function AboutSpread() {
                   loading="lazy"
                   draggable={false}
                   className="pointer-events-none select-none"
-                  style={{ display: "block", width: 480, maxWidth: "none", height: "auto" }}
+                  style={{ display: "block", width: 557, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
+
+              {/* "and a lot more..." moved below the CIE posters */}
+              <div
+                aria-hidden
+                className="absolute bg-[#EEEEEE]"
+                style={{ left: 3175, top: 414, width: 110, height: 24 }}
+              />
+              <div
+                className="absolute select-none text-center"
+                style={{
+                  left: 3130,
+                  top: 488,
+                  width: 200,
+                  fontFamily: "Urbanist, sans-serif",
+                  fontSize: 12.5,
+                  color: "#111111",
+                }}
+              >
+                and a lot more...
+              </div>
 
               {/* Levyug logo card with rank badge */}
               <Reveal
