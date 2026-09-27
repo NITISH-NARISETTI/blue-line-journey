@@ -341,7 +341,7 @@ function AboutSpread() {
 
               {/* Community event designs */}
               <Reveal
-                className="absolute left-[5370px] top-[245px] z-20 w-[500px]"
+                className="absolute left-[5285px] top-[224px] z-20 w-[625px]"
                 root={scrollerRef.current}
               >
                 <button
@@ -356,7 +356,7 @@ function AboutSpread() {
                     loading="lazy"
                     draggable={false}
                     className="pointer-events-none select-none"
-                    style={{ display: "block", width: 500, maxWidth: "none", height: "auto" }}
+                    style={{ display: "block", width: 625, maxWidth: "none", height: "auto" }}
                   />
                 </button>
               </Reveal>
