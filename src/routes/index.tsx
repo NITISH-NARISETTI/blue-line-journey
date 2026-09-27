@@ -439,7 +439,7 @@ function AboutSpread() {
               {/* Skills closing line, realigned to the tool icons' left edge */}
               <div
                 className="absolute select-none bg-[#EEEEEE]"
-                style={{ left: 6660, top: 540, width: 206, height: 58, fontFamily: "Urbanist, sans-serif" }}
+                style={{ left: 6660, top: 540, width: 200, height: 58, fontFamily: "Urbanist, sans-serif" }}
               >
                 <p style={{ marginLeft: -2, marginTop: 4, fontSize: 11, lineHeight: "14px", color: "#4E5875" }}>
                   And probably the most important one
@@ -450,6 +450,8 @@ function AboutSpread() {
                   YOU OPEN THE SOFTWARE.
                 </p>
               </div>
+
+              <div aria-hidden className="absolute bg-[#EEEEEE]" style={{ left: 6855, top: 542, width: 14, height: 16 }} />
 
               {/* Contact block, below the closing lines */}
               <Reveal className="absolute left-[7305px] top-[400px] z-10 w-[900px] font-sans">
