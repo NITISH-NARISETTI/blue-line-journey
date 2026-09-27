@@ -500,6 +500,32 @@ function AboutSpread() {
         ))}
       </div>
 
+      {zoomed && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Community posters"
+          onClick={() => setZoomed(false)}
+          className="fade-in-soft fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-ink/80 p-8 backdrop-blur-sm"
+        >
+          <img
+            src={community.url}
+            alt="Designs for design and tech communities around Hyderabad"
+            className="max-h-[88vh] w-auto max-w-[92vw]"
+            style={{ width: "min(92vw, 1400px)", height: "auto" }}
+          />
+          <button
+            type="button"
+            autoFocus
+            onClick={() => setZoomed(false)}
+            aria-label="Close"
+            className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-paper text-xl text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {/* Mobile: the same story, top to bottom */}
       <MobileSpread />
 
