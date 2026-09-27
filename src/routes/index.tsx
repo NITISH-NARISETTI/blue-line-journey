@@ -13,6 +13,7 @@ import engineering from "@/assets/engineering.png.asset.json";
 import spotlight from "@/assets/spotlight.png.asset.json";
 import cie from "@/assets/cie.png.asset.json";
 import levyug from "@/assets/levyug.svg.asset.json";
+import config from "@/assets/config.png.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -286,6 +287,22 @@ function AboutSpread() {
               >
                 and a lot more...
               </div>
+
+              {/* Config24 Hyderabad photo, shown below native size to stay sharp */}
+              <Reveal
+                className="absolute left-[4418px] top-[226px] z-10 w-[300px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={config.url}
+                  alt="Config 24 Extended Watch Party Hyderabad banner in front of an audience"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 300, maxWidth: "none", height: "auto", imageRendering: "auto" }}
+                />
+              </Reveal>
 
               {/* Levyug logo card with rank badge */}
               <Reveal
