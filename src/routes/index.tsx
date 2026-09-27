@@ -7,6 +7,7 @@ import { MobileSpread } from "@/components/about/mobile-spread";
 
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
+import profileCard from "@/assets/profile-card.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -212,6 +213,16 @@ function AboutSpread() {
                   artLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 draggable={false}
+              />
+              {/* New profile card, placed over the original stamp */}
+              <img
+                src={profileCard.url}
+                alt="Portrait of Nitish Narisetti"
+                width={206}
+                height={264}
+                draggable={false}
+                className="absolute select-none"
+                style={{ left: 492, top: 198, width: 206, height: 264, maxWidth: "none" }}
               />
               {/* Reworded closing line, set live over the exported artwork */}
               <div
