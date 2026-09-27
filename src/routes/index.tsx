@@ -8,6 +8,7 @@ import { MobileSpread } from "@/components/about/mobile-spread";
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 import { ProfileCard } from "@/components/about/profile-card";
+import { Sketchbook } from "@/components/about/sketchbook";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -215,6 +216,7 @@ function AboutSpread() {
                 draggable={false}
               />
               <ProfileCard />
+              <Sketchbook />
 
               {/* Reworded closing line, set live over the exported artwork */}
               <div
