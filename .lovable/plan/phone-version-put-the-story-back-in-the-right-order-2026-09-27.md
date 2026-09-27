@@ -18,3 +18,5 @@ On phones, the chapter text no longer follows the same order as the desktop stri
 
 - Phone chapter copy currently lives in `chapters.tsx`. Give the mobile view its own ordered copy list, matching the desktop artwork, so later desktop edits can't reshuffle it.
 - Check the result with Playwright at 390px and compare it against the desktop reading order.
+- implement scalabilty and accesbitly of standard mobile design gudielines, reduce fontsizes too
+- &nbsp;
