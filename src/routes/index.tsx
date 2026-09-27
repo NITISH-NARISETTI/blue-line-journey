@@ -15,6 +15,7 @@ import cie from "@/assets/cie.png.asset.json";
 import levyug from "@/assets/levyug.svg.asset.json";
 import config from "@/assets/config.png.asset.json";
 import deez from "@/assets/deez.svg.asset.json";
+import community from "@/assets/community.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -329,6 +330,21 @@ function AboutSpread() {
                 className="absolute z-20 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0000FF]"
                 style={{ left: 5052, top: 482, width: 116, height: 42 }}
               />
+
+              {/* Community event designs */}
+              <Reveal
+                className="absolute left-[5418px] top-[268px] z-10 w-[404px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={community.url}
+                  alt="Designs for design and tech communities around Hyderabad"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 404, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
 
               {/* Levyug logo card with rank badge */}
               <Reveal
