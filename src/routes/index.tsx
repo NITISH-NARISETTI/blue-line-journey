@@ -266,6 +266,27 @@ function AboutSpread() {
                 />
               </Reveal>
 
+              {/* Reworded "normal decision" line, set live over the artwork */}
+              <div
+                className="absolute select-none bg-[#EEEEEE] text-center"
+                style={{
+                  left: 2578,
+                  top: 524,
+                  width: 240,
+                  height: 38,
+                  fontFamily: "Urbanist, sans-serif",
+                  fontSize: 12.5,
+                  lineHeight: "14px",
+                  color: "#4E5875",
+                  paddingTop: 5,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Design stopped being just software.
+                <br />
+                It became communication.
+              </div>
+
               {/* Reworded closing line, set live over the exported artwork */}
               <div
                 aria-hidden
