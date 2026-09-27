@@ -272,7 +272,7 @@ function AboutSpread() {
                   </div>
                   <div>
                     <p className="uppercase text-ink/80">Socials</p>
-                    <a href="#" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Linked In</a>
+                    <a href="https://www.linkedin.com/in/nitishnarisetti/" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Linked In</a>
                     <a href="https://www.behance.net/narisettinitish" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Behance</a>
                   </div>
                 </div>
