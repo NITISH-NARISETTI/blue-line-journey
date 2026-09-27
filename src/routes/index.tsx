@@ -221,7 +221,7 @@ function AboutSpread() {
                 width={206}
                 height={264}
                 draggable={false}
-                className="absolute select-none"
+                className="absolute z-10 cursor-pointer select-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:rotate-[25deg] motion-reduce:transition-none motion-reduce:hover:rotate-0"
                 style={{ left: 492, top: 198, width: 206, height: 264, maxWidth: "none" }}
               />
               {/* Reworded closing line, set live over the exported artwork */}
