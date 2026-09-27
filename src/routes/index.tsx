@@ -14,6 +14,7 @@ import spotlight from "@/assets/spotlight.png.asset.json";
 import cie from "@/assets/cie.png.asset.json";
 import levyug from "@/assets/levyug.svg.asset.json";
 import config from "@/assets/config.png.asset.json";
+import deez from "@/assets/deez.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -303,6 +304,31 @@ function AboutSpread() {
                   style={{ display: "block", width: 300, maxWidth: "none", height: "auto", imageRendering: "auto" }}
                 />
               </Reveal>
+
+              {/* deezign studio artwork */}
+              <Reveal
+                className="absolute left-[4990px] top-[230px] z-10 w-[240px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={deez.url}
+                  alt="deezign studio profile artwork"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none rounded-md"
+                  style={{ display: "block", width: 240, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
+
+              {/* Clickable deezign.org over the artwork text */}
+              <a
+                href="https://deezign.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit deezign.org"
+                className="absolute z-20 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0000FF]"
+                style={{ left: 5052, top: 482, width: 116, height: 42 }}
+              />
 
               {/* Levyug logo card with rank badge */}
               <Reveal
