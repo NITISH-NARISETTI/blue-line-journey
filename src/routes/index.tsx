@@ -12,6 +12,7 @@ import { Sketchbook } from "@/components/about/sketchbook";
 import engineering from "@/assets/engineering.png.asset.json";
 import spotlight from "@/assets/spotlight.png.asset.json";
 import cie from "@/assets/cie.png.asset.json";
+import levyug from "@/assets/levyug.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -263,6 +264,21 @@ function AboutSpread() {
                   draggable={false}
                   className="pointer-events-none select-none"
                   style={{ display: "block", width: 480, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
+
+              {/* Levyug logo card with rank badge */}
+              <Reveal
+                className="absolute left-[3865px] top-[250px] z-10 w-[264px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={levyug.url}
+                  alt="Levyug logo card with a badge: ranked #5, received Best Design Award"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 264, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
