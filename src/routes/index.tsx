@@ -10,6 +10,7 @@ import lines from "@/assets/about-me-lines.svg.asset.json";
 import { ProfileCard } from "@/components/about/profile-card";
 import { Sketchbook } from "@/components/about/sketchbook";
 import engineering from "@/assets/engineering.png.asset.json";
+import spotlight from "@/assets/spotlight.png.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -231,6 +232,21 @@ function AboutSpread() {
                   draggable={false}
                   className="pointer-events-none select-none"
                   style={{ display: "block", width: 232, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
+
+              {/* Spotlight podcast covers, fades in when scrolled into view */}
+              <Reveal
+                className="absolute left-[2570px] top-[258px] z-10 w-[360px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={spotlight.url}
+                  alt="MLRIT Spotlight podcast cover and On Air episode thumbnails"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 360, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
