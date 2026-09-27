@@ -1,22 +1,32 @@
 import { useState } from "react";
 
+import s1 from "@/assets/sketch-1.jpg.asset.json";
+import s2 from "@/assets/sketch-2.jpg.asset.json";
+import s3 from "@/assets/sketch-3.jpg.asset.json";
+import s4 from "@/assets/sketch-4.jpg.asset.json";
+import s5 from "@/assets/sketch-5.jpg.asset.json";
+import s6 from "@/assets/sketch-6.jpg.asset.json";
+import s7 from "@/assets/sketch-7.jpg.asset.json";
+
 /**
  * Landscape sketchbook, spiral-bound along the top. Click (or Enter/Space)
  * flips the next page up over the binding; after the last page it closes again.
- * Replace the `src` values in PAGES with the real sketch photos.
  */
 export type SketchPage = { src?: string; alt: string };
 
 const PAGES: SketchPage[] = [
   { alt: "Sketchbook cover" },
-  { alt: "Sketch page 1" },
-  { alt: "Sketch page 2" },
-  { alt: "Sketch page 3" },
-  { alt: "Sketch page 4" },
+  { src: s1.url, alt: "Pencil sketch of tulips" },
+  { src: s2.url, alt: "Ink sketch of Krishna playing the flute beside Radha" },
+  { src: s3.url, alt: "Two skulls, one in a hat and suit, one with headphones" },
+  { src: s4.url, alt: "A butterfly formed from a pelvis bone" },
+  { src: s5.url, alt: "A skull with flowers and arrows" },
+  { src: s6.url, alt: "A knight in a helmet" },
+  { src: s7.url, alt: "A crow pulling a tear from an eye" },
 ];
 
-/** Placement on the 8400x700 canvas. */
-const BOOK = { left: 1515, top: 222, width: 380, height: 266 };
+/** Placement on the 8400x700 canvas (75% of the original size, same centre). */
+const BOOK = { left: 1563, top: 255, width: 285, height: 200 };
 
 function Face({ page, index }: { page?: SketchPage; index: number }) {
   if (page?.src) {
