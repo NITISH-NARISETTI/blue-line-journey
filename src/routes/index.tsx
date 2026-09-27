@@ -9,6 +9,7 @@ import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 import { ProfileCard } from "@/components/about/profile-card";
 import { Sketchbook } from "@/components/about/sketchbook";
+import engineering from "@/assets/engineering.png.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -217,6 +218,21 @@ function AboutSpread() {
               />
               <ProfileCard />
               <Sketchbook />
+
+              {/* Engineering-college still life, fades in when scrolled into view */}
+              <Reveal
+                className="absolute left-[2021px] top-[224px] z-10 w-[232px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={engineering.url}
+                  alt="Engineering college life: textbooks, college ID card, laptop, calculator and earbuds"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 232, maxWidth: "none", height: "auto" }}
+                />
+              </Reveal>
 
               {/* Reworded closing line, set live over the exported artwork */}
               <div
