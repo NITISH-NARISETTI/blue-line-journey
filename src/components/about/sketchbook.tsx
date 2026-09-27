@@ -82,6 +82,8 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
 
       {pages.map((page, i) => {
         const isFlipped = i < flipped;
+        // When the book closes, pages fall back one after another, last page first.
+        const returnDelay = flipped === 0 ? (total - 1 - i) * 70 : 0;
         return (
           <div
             key={i}
@@ -89,12 +91,15 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
             style={{
               transformOrigin: "center top",
               transformStyle: "preserve-3d",
-              transform: `rotateX(${isFlipped ? 180 : 0}deg) translateZ(${isFlipped ? i * 0.3 : (total - i) * 0.3}px)`,
+              transform: isFlipped
+                ? "rotateX(178deg) translateZ(1px)"
+                : "rotateX(0deg) translateZ(0px)",
               opacity: isFlipped ? 0 : 1,
               transition: isFlipped
-                ? "transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.35s ease 0.55s"
-                : "transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.2s ease",
-              zIndex: isFlipped ? i : total - i,
+                ? "transform 1.1s cubic-bezier(0.45, 0.05, 0.25, 1), opacity 0.4s ease 0.62s"
+                : `transform 0.9s cubic-bezier(0.3, 0.7, 0.2, 1) ${returnDelay}ms, opacity 0.25s ease ${returnDelay}ms`,
+              // A turning page always rides above the unturned stack beneath it.
+              zIndex: isFlipped ? total + i + 1 : total - i,
             }}
           >
             <div
@@ -102,6 +107,15 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
               style={{ backfaceVisibility: "hidden" }}
             >
               <Face page={page} index={i} />
+              {/* Shading as the page lifts off the book */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, rgba(17,17,17,0.28), rgba(17,17,17,0) 70%)",
+                  opacity: isFlipped ? 1 : 0,
+                  transition: "opacity 0.55s ease",
+                }}
+              />
             </div>
             {/* Back of the page, seen once it has flipped over the binding */}
             <div
