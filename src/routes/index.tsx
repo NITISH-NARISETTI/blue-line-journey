@@ -17,6 +17,7 @@ import config from "@/assets/config.png.asset.json";
 import deez from "@/assets/deez.svg.asset.json";
 import community from "@/assets/community.svg.asset.json";
 import varience from "@/assets/varience.svg.asset.json";
+import rangoli from "@/assets/rangoli.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -471,6 +472,24 @@ function AboutSpread() {
                     <a href="https://www.linkedin.com/in/nitishnarisetti/" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Linked In</a>
                     <a href="https://www.behance.net/narisettinitish" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Behance</a>
                   </div>
+                </div>
+              </Reveal>
+
+              {/* Rangoli stamp + caption, tilted 6.18° */}
+              <Reveal className="absolute left-[7920px] top-[120px] z-10 w-[220px]">
+                <div style={{ transform: "rotate(6.18deg)", transformOrigin: "center" }}>
+                  <img
+                    src={rangoli.url}
+                    alt="Spider-Man rangoli stamp"
+                    width={220}
+                    height={208}
+                    draggable={false}
+                    className="block select-none"
+                    style={{ maxWidth: "none" }}
+                  />
+                  <p className="mt-3 text-center font-sans text-[12px] leading-[16px] text-ink/70">
+                    i am also skilled in making spider-man rangoli, you should definitely hire me
+                  </p>
                 </div>
               </Reveal>
             </div>
