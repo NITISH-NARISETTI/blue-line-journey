@@ -23,7 +23,7 @@ export function ProfileCard() {
         width={TITLE.width}
         height={TITLE.height}
         draggable={false}
-        className="absolute z-10 select-none"
+        className="absolute z-10 select-none opacity-50"
         style={{ ...TITLE, maxWidth: "none" }}
       />
       <div
