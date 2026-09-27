@@ -249,12 +249,35 @@ function AboutSpread() {
                   color: "#111111",
                   paddingLeft: 7,
                   paddingTop: 5,
+                  whiteSpace: "nowrap",
                 }}
               >
                 Today, I&apos;m between brand,
                 <br />
                 visual communication, culture and technology.
               </div>
+
+              {/* Contact block, below the closing lines */}
+              <Reveal className="absolute left-[7305px] top-[400px] z-10 w-[900px] font-sans">
+                <h2 className="text-[26px] font-medium leading-none text-electric">Contact Me</h2>
+                <div className="mt-6 flex items-start text-[16px] leading-[26px]">
+                  <p className="w-[480px] pr-10 text-ink/60">
+                    Let&apos;s create something meaningful together. I&apos;d love to hear about
+                    your project, big or small.
+                  </p>
+                  <div className="w-[260px]">
+                    <p className="uppercase text-ink/80">Email &amp; Phone</p>
+                    <a href="mailto:nitishnarisetti.com" className="block text-electric hover:underline">nitishnarisetti.com</a>
+                    <a href="tel:+919573561389" className="block text-electric hover:underline">+91 9573561389</a>
+                  </div>
+                  <div>
+                    <p className="uppercase text-ink/80">Socials</p>
+                    <a href="#" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Linked In</a>
+                    <a href="#" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Instagram</a>
+                    <a href="#" target="_blank" rel="noreferrer" className="block text-electric hover:underline">Behance</a>
+                  </div>
+                </div>
+              </Reveal>
             </div>
 
 
