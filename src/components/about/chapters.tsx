@@ -89,7 +89,7 @@ export const chapters: Chapter[] = [
     content: (
       <div className="flex h-full flex-col justify-center gap-8">
         <p className="font-display text-[2.4rem] font-light leading-tight">
-          And then I made a very normal decision.
+          Design stopped being just software. It became communication.
         </p>
         <p className="max-w-[380px] text-base leading-relaxed text-ink/60">
           A pretty standard Indian engineering-college plot.
