@@ -221,7 +221,7 @@ function AboutSpread() {
 
               {/* Engineering-college still life, fades in when scrolled into view */}
               <Reveal
-                className="absolute z-10"
+                className="absolute left-[2021px] top-[224px] z-10 w-[232px]"
                 root={scrollerRef.current}
               >
                 <img
@@ -230,7 +230,7 @@ function AboutSpread() {
                   loading="lazy"
                   draggable={false}
                   className="pointer-events-none select-none"
-                  style={{ position: "absolute", left: 2021, top: 224, width: 232, maxWidth: "none", height: "auto" }}
+                  style={{ display: "block", width: 232, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
