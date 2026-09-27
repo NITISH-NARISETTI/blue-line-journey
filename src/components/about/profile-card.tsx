@@ -2,7 +2,7 @@ import profileCard from "@/assets/profile-card.svg.asset.json";
 import aboutTitle from "@/assets/about-me-title.svg.asset.json";
 
 /** Position of the new "about me" title artwork on the 8400x700 canvas. */
-const CARD = { left: 506, top: 211, width: 206, height: 264 };
+const CARD = { left: 506, top: 198, width: 206, height: 264 };
 const TITLE = { left: -4, top: 196, width: 1224, height: 322 };
 
 /**
