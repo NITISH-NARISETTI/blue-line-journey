@@ -269,7 +269,7 @@ function AboutSpread() {
 
               {/* Levyug logo card with rank badge */}
               <Reveal
-                className="absolute left-[3865px] top-[258px] z-10 w-[264px]"
+                className="absolute left-[3865px] top-[250px] z-10 w-[264px]"
                 root={scrollerRef.current}
               >
                 <img
