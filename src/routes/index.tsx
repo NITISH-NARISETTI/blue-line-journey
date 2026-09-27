@@ -16,6 +16,7 @@ import levyug from "@/assets/levyug.svg.asset.json";
 import config from "@/assets/config.png.asset.json";
 import deez from "@/assets/deez.svg.asset.json";
 import community from "@/assets/community.svg.asset.json";
+import varience from "@/assets/varience.svg.asset.json";
 
 const CANVAS = { w: 8400, h: 700 };
 
@@ -359,6 +360,21 @@ function AboutSpread() {
                     style={{ display: "block", width: 531, maxWidth: "none", height: "auto" }}
                   />
                 </button>
+              </Reveal>
+
+              {/* Variance residency collage */}
+              <Reveal
+                className="absolute left-[6043px] top-[238px] z-10 w-[491px]"
+                root={scrollerRef.current}
+              >
+                <img
+                  src={varience.url}
+                  alt="Variance deep-tech residency designs, Koramangala, Bengaluru"
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none select-none"
+                  style={{ display: "block", width: 491, maxWidth: "none", height: "auto" }}
+                />
               </Reveal>
 
               {/* Levyug logo card with rank badge */}
