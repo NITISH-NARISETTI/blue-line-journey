@@ -129,8 +129,9 @@ function AboutSpread() {
         orientation: "horizontal",
         gestureOrientation: "both",
         smoothWheel: true,
-        lerp: 0.085,
-        wheelMultiplier: 1.1,
+        lerp: 0.06,
+        wheelMultiplier: 0.55,
+        touchMultiplier: 0.8,
         syncTouch: false,
       }) as unknown as typeof lenis;
       lenisRef.current = lenis;
@@ -152,13 +153,13 @@ function AboutSpread() {
   const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     const el = scrollerRef.current;
     if (!el) return;
-    const step = el.clientWidth * 0.8;
+    const step = el.clientWidth * 0.55;
     let target = el.scrollLeft;
     if (e.key === "ArrowRight" || e.key === "PageDown") target += step;
     else if (e.key === "ArrowLeft" || e.key === "PageUp") target -= step;
     else return;
     e.preventDefault();
-    if (lenisRef.current) lenisRef.current.scrollTo(target, { duration: 1.1 });
+    if (lenisRef.current) lenisRef.current.scrollTo(target, { duration: 1.4 });
     else el.scrollLeft = target;
   }, []);
 
@@ -476,7 +477,7 @@ function AboutSpread() {
               </Reveal>
 
               {/* Rangoli stamp + caption, tilted 6.18° */}
-              <Reveal className="absolute left-[7890px] top-[70px] z-10 w-[290px]">
+              <Reveal className="absolute left-[7874px] top-[70px] z-10 w-[290px]">
                 <div style={{ transform: "rotate(6.18deg)", transformOrigin: "center" }}>
                   <div className="rangoli-swing">
                     <img
