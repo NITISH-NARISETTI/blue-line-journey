@@ -238,7 +238,7 @@ function AboutSpread() {
 
               {/* Spotlight podcast covers, fades in when scrolled into view */}
               <Reveal
-                className="absolute left-[2495px] top-[268px] z-10 w-[270px]"
+                className="absolute left-[2513px] top-[250px] z-10 w-[348px]"
                 root={scrollerRef.current}
               >
                 <img
@@ -247,7 +247,7 @@ function AboutSpread() {
                   loading="lazy"
                   draggable={false}
                   className="pointer-events-none select-none"
-                  style={{ display: "block", width: 270, maxWidth: "none", height: "auto" }}
+                  style={{ display: "block", width: 348, maxWidth: "none", height: "auto" }}
                 />
               </Reveal>
 
