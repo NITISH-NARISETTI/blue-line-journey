@@ -1,6 +1,8 @@
+import profileCard from "@/assets/profile-card.svg.asset.json";
 import aboutTitle from "@/assets/about-me-title.svg.asset.json";
 
 /** Position of the new "about me" title artwork on the 8400x700 canvas. */
+const CARD = { left: 506, top: 211, width: 206, height: 264 };
 const TITLE = { left: -4, top: 196, width: 1224, height: 322 };
 
 /**
@@ -23,6 +25,20 @@ export function ProfileCard() {
         draggable={false}
         className="absolute z-10 select-none"
         style={{ ...TITLE, maxWidth: "none" }}
+      />
+      <div
+        aria-hidden
+        className="absolute z-[11] bg-[#EEEEEE]"
+        style={{ left: 508, top: 230, width: 202, height: 226 }}
+      />
+      <img
+        src={profileCard.url}
+        alt=""
+        width={CARD.width}
+        height={CARD.height}
+        draggable={false}
+        className="absolute z-[12] cursor-pointer select-none will-change-transform transition-transform duration-[900ms] ease-[cubic-bezier(0.34,1.36,0.64,1)] hover:rotate-[12.5deg] motion-reduce:transition-none motion-reduce:hover:rotate-0"
+        style={{ ...CARD, maxWidth: "none" }}
       />
     </>
   );
