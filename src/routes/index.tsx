@@ -50,6 +50,14 @@ function AboutSpread() {
   const [reduced, setReduced] = useState(false);
   const [artLoaded, setArtLoaded] = useState(false);
   const [lineArt, setLineArt] = useState("");
+  const [zoomed, setZoomed] = useState(false);
+
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setZoomed(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [zoomed]);
 
   const trackWidth = CANVAS.w * scale;
 
@@ -333,17 +341,24 @@ function AboutSpread() {
 
               {/* Community event designs */}
               <Reveal
-                className="absolute left-[5418px] top-[268px] z-10 w-[404px]"
+                className="absolute left-[5370px] top-[245px] z-20 w-[500px]"
                 root={scrollerRef.current}
               >
-                <img
-                  src={community.url}
-                  alt="Designs for design and tech communities around Hyderabad"
-                  loading="lazy"
-                  draggable={false}
-                  className="pointer-events-none select-none"
-                  style={{ display: "block", width: 404, maxWidth: "none", height: "auto" }}
-                />
+                <button
+                  type="button"
+                  onClick={() => setZoomed(true)}
+                  aria-label="Enlarge community posters"
+                  className="block cursor-zoom-in rounded-md transition-transform duration-300 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric"
+                >
+                  <img
+                    src={community.url}
+                    alt="Designs for design and tech communities around Hyderabad"
+                    loading="lazy"
+                    draggable={false}
+                    className="pointer-events-none select-none"
+                    style={{ display: "block", width: 500, maxWidth: "none", height: "auto" }}
+                  />
+                </button>
               </Reveal>
 
               {/* Levyug logo card with rank badge */}
