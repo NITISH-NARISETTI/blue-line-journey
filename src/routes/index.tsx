@@ -476,18 +476,20 @@ function AboutSpread() {
               </Reveal>
 
               {/* Rangoli stamp + caption, tilted 6.18° */}
-              <Reveal className="absolute left-[7920px] top-[120px] z-10 w-[220px]">
+              <Reveal className="absolute left-[7890px] top-[70px] z-10 w-[290px]">
                 <div style={{ transform: "rotate(6.18deg)", transformOrigin: "center" }}>
-                  <img
-                    src={rangoli.url}
-                    alt="Spider-Man rangoli stamp"
-                    width={220}
-                    height={208}
-                    draggable={false}
-                    className="block select-none"
-                    style={{ maxWidth: "none" }}
-                  />
-                  <p className="mt-3 text-center font-sans text-[12px] leading-[16px] text-ink/70">
+                  <div className="rangoli-swing">
+                    <img
+                      src={rangoli.url}
+                      alt="Spider-Man rangoli stamp"
+                      width={290}
+                      height={274}
+                      draggable={false}
+                      className="block select-none"
+                      style={{ maxWidth: "none" }}
+                    />
+                  </div>
+                  <p className="mt-3 text-center font-sans text-[14px] leading-[18px] text-ink/70">
                     i am also skilled in making spider-man rangoli, you should definitely hire me
                   </p>
                 </div>
