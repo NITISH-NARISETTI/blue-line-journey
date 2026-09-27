@@ -253,7 +253,7 @@ function AboutSpread() {
 
               {/* CIE event posters */}
               <Reveal
-                className="absolute left-[2950px] top-[300px] z-10 w-[380px]"
+                className="absolute left-[3040px] top-[228px] z-10 w-[380px]"
                 root={scrollerRef.current}
               >
                 <img
