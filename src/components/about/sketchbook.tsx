@@ -64,7 +64,11 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
     <div
       role="button"
       tabIndex={0}
-      aria-label={`Sketchbook, page ${Math.min(flipped + 1, total)} of ${total}. Click to turn the page.`}
+      aria-label={
+        flipped >= total
+          ? "End of sketchbook. Click to close."
+          : `Sketchbook, page ${flipped + 1} of ${total}. Click to turn the page.`
+      }
       onClick={next}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -81,6 +85,19 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
         className="absolute inset-0 rounded-[6px] bg-[#FBFAF6]"
         style={{ boxShadow: "0 18px 30px -18px rgba(17,17,17,0.45), 0 2px 6px rgba(17,17,17,0.12)" }}
       />
+
+      {/* Closing note on the last page */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 font-sans transition-opacity duration-500 ease-out motion-reduce:transition-none"
+        style={{
+          opacity: flipped >= total ? 1 : 0,
+          transitionDelay: flipped >= total ? "500ms" : "0ms",
+        }}
+      >
+        <p className="text-[18px] font-light text-ink/60">that&apos;s it.</p>
+        <p className="text-[10px] uppercase tracking-[0.3em] text-electric">click to close the book</p>
+      </div>
 
       {pages.map((page, i) => {
         const isFlipped = i < flipped;
