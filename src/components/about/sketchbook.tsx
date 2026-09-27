@@ -80,7 +80,10 @@ export function Sketchbook({ pages = PAGES }: { pages?: SketchPage[] }) {
               transformOrigin: "center top",
               transformStyle: "preserve-3d",
               transform: `rotateX(${isFlipped ? 180 : 0}deg) translateZ(${isFlipped ? i * 0.3 : (total - i) * 0.3}px)`,
-              transition: "transform 1s cubic-bezier(0.645, 0.045, 0.355, 1)",
+              opacity: isFlipped ? 0 : 1,
+              transition: isFlipped
+                ? "transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.35s ease 0.55s"
+                : "transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.2s ease",
               zIndex: isFlipped ? i : total - i,
             }}
           >
