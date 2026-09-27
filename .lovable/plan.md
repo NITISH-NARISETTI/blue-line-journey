@@ -1,38 +1,20 @@
-# Turn the About Me strip into a Framer component
+# Phone version: put the story back in the right order
 
-Yes, this is possible. The strip becomes one self-contained Framer code component that you paste into your Framer site between your existing sections.
+On phones, the chapter text no longer follows the same order as the desktop strip. For example, "Design stopped being just software. It became communication." now shows before the podcast. On desktop it comes after. "Until I discovered something that changed things:" is also stuck in the wrong chapter.
 
-## How the scrolling will feel
+## What changes (phone only)
 
-```text
-[ Framer section ]   scroll down normally
-[ About Me strip ]   the strip locks to the screen; scrolling down moves it sideways, left to right
-                     when the last panel (Contact Me) is reached, the lock releases
-[ Framer section ]   scroll down normally again
-```
+- Walk through the desktop strip from left to right and rewrite each phone chapter so its lines appear in exactly that order:
+  1. About me: "Somewhere between the sketchbook and the engineering classroom, I found design…"
+  2. "A pretty standard Indian engineering-college plot." then "Until I discovered something that changed things:"
+  3. Podcast: "Started a university podcast. Designed everything around it."
+  4. "Design stopped being just software. It became communication."
+  5. CIE, Levyug, the college club, Config24, deezign, communities, Variance, skills and the closing text, each matching the wording on desktop, then the Contact block (email, phone, LinkedIn, Behance), which is currently missing on phones.
+- Renumber the chapter markers (00, 01, …) to fit the new list.
+- Keep the same dotted line, fade-ins, spacing and fonts.
+- Desktop stays untouched.
 
-Scrolling back up does the same in reverse. Mouse wheel, trackpad, touch and keyboard all work, because the page itself keeps scrolling up and down. The strip just turns that into sideways movement. Visitors never get stuck.
+## Technical notes
 
-## What goes into the component
-- The full artwork strip, fitted to the screen height
-- The grey-to-blue line fill that follows scroll, plus the soft fade-in edge
-- Every image (Spotlight, CIE, Levyug, Config, deezign, community posters with the zoom view, Variance, engineering), each fading in when it comes into view
-- The profile card with its hover tilt, and the sketchbook with page turns and the "that's it." note
-- The closing line and the Contact Me block with LinkedIn, Behance and deezign links
-- The phone version: the vertical timeline shows automatically on small screens, with no sideways scroll
-
-## What you'll get
-- One file, `AboutMeStrip.tsx`, in your Files, ready to paste into Framer (Assets > Code > New component)
-- Short step-by-step instructions: paste it, drop it onto the canvas between your sections, set it to full width
-- Settings you can change in Framer's right-hand panel: background colour, line colours, and scroll length (how much vertical scrolling crosses the strip)
-
-The current Lovable site stays the same.
-
-## Technical details
-- Pinning uses a tall outer wrapper (height = scaled strip width − viewport width + viewport height) with a `position: sticky; top:0; height:100vh` inner frame. `useScroll({ target })` + `useTransform` from `framer-motion` (built into Framer) maps progress to `translateX`. No Lenis, since it would fight Framer's scrolling. Framer's own smooth scroll still applies.
-- The line reveal mask and `Reveal` fade-ins are driven by the same scroll progress, not by IntersectionObserver on a horizontal scroller.
-- Tailwind classes become inline styles. Fonts load via Framer's font settings, or with a `<link>` injected by the component.
-- Images and the main SVG load from their existing hosted asset URLs, so nothing needs uploading. The 60 MB master SVG stays lazily loaded with the fade-in.
-- `addPropertyControls` exposes colours and scroll-length multiplier. The component uses `useIsStaticRenderer` so the Framer canvas shows a static preview.
-- The mobile breakpoint (<768px) renders the vertical spread inline.
-- Verification: bundle-check the file with a small harness page in /tmp, run it in Playwright inside a tall page with sections above and below, and confirm vertical → horizontal → vertical handoff both ways.
+- Phone chapter copy currently lives in `chapters.tsx`. Give the mobile view its own ordered copy list, matching the desktop artwork, so later desktop edits can't reshuffle it.
+- Check the result with Playwright at 390px and compare it against the desktop reading order.
