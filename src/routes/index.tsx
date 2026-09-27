@@ -364,7 +364,7 @@ function AboutSpread() {
 
               {/* Variance residency collage */}
               <Reveal
-                className="absolute left-[6043px] top-[238px] z-10 w-[491px]"
+                className="absolute left-[6043px] top-[220px] z-10 w-[491px]"
                 root={scrollerRef.current}
               >
                 <img
