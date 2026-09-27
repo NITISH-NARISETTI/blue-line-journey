@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { chapters } from "@/components/about/chapters";
 import { Reveal } from "@/components/about/reveal";
 import { MobileSpread } from "@/components/about/mobile-spread";
-import { FlipBook } from "@/components/about/flip-book";
 
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
@@ -216,12 +215,14 @@ function AboutSpread() {
                 draggable={false}
               />
               {/* New profile card, placed over the original stamp */}
-              <FlipBook
-                cover={{ src: profileCard.url, alt: "Portrait of Nitish Narisetti" }}
+              <img
+                src={profileCard.url}
+                alt="Portrait of Nitish Narisetti"
                 width={206}
                 height={264}
-                className="absolute z-10"
-                style={{ left: 492, top: 198 }}
+                draggable={false}
+                className="absolute z-10 cursor-pointer select-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:rotate-[25deg] motion-reduce:transition-none motion-reduce:hover:rotate-0"
+                style={{ left: 492, top: 198, width: 206, height: 264, maxWidth: "none" }}
               />
               {/* Reworded closing line, set live over the exported artwork */}
               <div
