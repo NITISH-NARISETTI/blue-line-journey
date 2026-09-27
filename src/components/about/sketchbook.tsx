@@ -7,6 +7,7 @@ import s4 from "@/assets/sketch-4.jpg.asset.json";
 import s5 from "@/assets/sketch-5.jpg.asset.json";
 import s6 from "@/assets/sketch-6.jpg.asset.json";
 import s7 from "@/assets/sketch-7.jpg.asset.json";
+import s8 from "@/assets/sketch-8.png.asset.json";
 
 /**
  * Landscape sketchbook, spiral-bound along the top. Click (or Enter/Space)
@@ -23,6 +24,7 @@ const PAGES: SketchPage[] = [
   { src: s5.url, alt: "A skull with flowers and arrows" },
   { src: s6.url, alt: "A knight in a helmet" },
   { src: s7.url, alt: "A crow pulling a tear from an eye" },
+  { src: s8.url, alt: "A woman seen from behind, arms raised, hair adorned with ornaments" },
 ];
 
 /** Placement on the 8400x700 canvas (75% of the original size, same centre). */
