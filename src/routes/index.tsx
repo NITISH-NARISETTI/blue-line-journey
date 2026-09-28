@@ -175,7 +175,8 @@ function AboutSpread() {
 
   // Soft, blurred reveal edge instead of a hard cut.
   const fade = 220;
-  const softMask = reduced
+  const atEnd = scrollX + viewport >= trackWidth - 16;
+  const softMask = reduced || atEnd
     ? "none"
     : `linear-gradient(to right, rgba(0,0,0,1) 0px, rgba(0,0,0,1) ${Math.max(
         0,
