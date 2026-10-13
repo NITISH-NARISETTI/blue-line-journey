@@ -19,13 +19,20 @@ export function ProfileCard() {
       />
       <img
         src={aboutTitle.url}
-        alt="About me — portrait of Nitish Narisetti. CS engineer turned designer who specialises in crafting empathetic experiences for delight and function."
+        alt="About me"
         width={TITLE.width}
         height={TITLE.height}
         draggable={false}
         className="absolute z-10 select-none opacity-50"
         style={{ ...TITLE, maxWidth: "none" }}
       />
+      <p
+        className="absolute z-10 text-center font-display text-[16px] font-light leading-[1.35] text-ink/70"
+        style={{ left: 249, top: 466, width: 600 }}
+      >
+        CS engineer turned visual designer, creating visual identities and experiences that
+        balance clarity, character, and purpose.
+      </p>
       <div
         aria-hidden
         className="absolute z-[11] bg-[#EEEEEE]"
