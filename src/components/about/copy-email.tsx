@@ -27,11 +27,9 @@ export function CopyEmail({ mobile = false }: { mobile?: boolean }) {
         aria-label={`Copy email address ${EMAIL}`}
         className={`h-auto justify-start rounded-sm p-0 text-electric focus-visible:ring-electric ${mobile ? "min-h-11 text-[15px] font-medium" : "text-[16px] font-normal leading-[26px]"}`}
       >
-        {EMAIL}
+        <span className={`${status === "Copy email" ? "group-hover:invisible group-focus-within:invisible" : "invisible"}`}>{EMAIL}</span>
+        <span aria-hidden className={`absolute left-0 ${status === "Copy email" ? "invisible group-hover:visible group-focus-within:visible" : "visible"}`}>{status}</span>
       </Button>
-      <span aria-hidden className={`pointer-events-none absolute bottom-full left-0 mb-1 whitespace-nowrap text-[12px] leading-5 text-electric transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 ${status === "Copy email" ? "opacity-0" : "opacity-100"}`}>
-        {status}
-      </span>
       <span role="status" className="sr-only">{status === "Copy email" ? "" : status}</span>
     </span>
   );
