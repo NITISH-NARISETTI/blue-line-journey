@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CopyEmail } from "./copy-email";
 
 /** Phone-only story, in the same left-to-right order as the desktop strip. */
 export type MobileChapter = { id: string; title: string; content: ReactNode };
@@ -236,7 +237,7 @@ export const mobileChapters: MobileChapter[] = [
         </Body>
         <p className="mt-6 text-[11px] uppercase tracking-[0.25em] text-ink/60">Email &amp; Phone</p>
         <div className="flex flex-col">
-          <LinkA href="mailto:nitishnarisetti@gmail.com">nitishnarisetti@gmail.com</LinkA>
+          <CopyEmail mobile />
           <LinkA href="tel:+919573561389">+91 9573561389</LinkA>
         </div>
         <p className="mt-4 text-[11px] uppercase tracking-[0.25em] text-ink/60">Socials</p>
