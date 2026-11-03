@@ -236,7 +236,7 @@ export const mobileChapters: MobileChapter[] = [
         </Body>
         <p className="mt-6 text-[11px] uppercase tracking-[0.25em] text-ink/60">Email &amp; Phone</p>
         <div className="flex flex-col">
-          <LinkA href="mailto:nitishnarisetti.com">nitishnarisetti.com</LinkA>
+          <LinkA href="mailto:nitishnarisetti@gmail.com">nitishnarisetti@gmail.com</LinkA>
           <LinkA href="tel:+919573561389">+91 9573561389</LinkA>
         </div>
         <p className="mt-4 text-[11px] uppercase tracking-[0.25em] text-ink/60">Socials</p>
