@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { chapters } from "@/components/about/chapters";
 import { Reveal } from "@/components/about/reveal";
 import { MobileSpread } from "@/components/about/mobile-spread";
+import { EmailContact } from "@/components/about/email-contact";
 
 import strip from "@/assets/about-me-strip.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
@@ -466,7 +467,7 @@ function AboutSpread() {
                   </p>
                   <div className="w-[260px]">
                     <p className="uppercase text-ink/80">Email &amp; Phone</p>
-                    <a href="mailto:nitishnarisetti@gmail.com" className="block text-electric hover:underline">nitishnarisetti@gmail.com</a>
+                    <EmailContact />
                     <a href="tel:+919573561389" className="block text-electric hover:underline">+91 9573561389</a>
                   </div>
                   <div>

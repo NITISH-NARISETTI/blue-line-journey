@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Share the email contact control between desktop and mobile so clipboard behavior and feedback stay consistent; keep the standalone Framer delivery self-contained.
