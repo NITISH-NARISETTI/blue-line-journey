@@ -1,5 +1,5 @@
 - [x] Replace phone timeline with proportionally scaled horizontal artwork on the site.
 - [x] Deliver updated Framer component with the same mobile sizing and effects.
 - [x] Check phone sizes, interactions, end-of-strip visibility, and desktop preservation.
-- [ ] Keep the blue spine behind unmasked foreground artwork and add a mobile swipe cue.
-- [ ] Verify the updated preview on phone and desktop.
+- [x] Keep the blue spine behind unmasked foreground artwork and add a mobile swipe cue.
+- [x] Verify the updated preview on phone and desktop.
