@@ -202,7 +202,7 @@ function AboutSpread() {
         aria-label="About me horizontal timeline"
         className="hide-scrollbar relative block h-svh w-full overflow-x-auto overflow-y-hidden bg-paper outline-none"
       >
-        <div className="relative h-full" style={{ width: trackWidth }}>
+        <div className="relative h-full overflow-hidden" style={{ width: trackWidth }}>
           <div
             className="absolute left-0"
             style={{
