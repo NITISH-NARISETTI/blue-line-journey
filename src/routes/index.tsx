@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { chapters } from "@/components/about/chapters";
 import { Reveal } from "@/components/about/reveal";
-import { MobileSpread } from "@/components/about/mobile-spread";
+import { stripScale } from "@/components/about/strip-scale";
 import { CopyEmail } from "@/components/about/copy-email";
 
 import strip from "@/assets/about-me-strip.svg.asset.json";
@@ -62,7 +62,9 @@ function AboutSpread() {
     return () => window.removeEventListener("keydown", onKey);
   }, [zoomed]);
 
-  const trackWidth = CANVAS.w * scale;
+  const trackWidth = viewport < 768
+    ? 8205 * scale + viewport * 0.12
+    : CANVAS.w * scale;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -96,7 +98,7 @@ function AboutSpread() {
       frame = 0;
       setScrollX(el.scrollLeft);
       setViewport(el.clientWidth);
-      setScale(Math.max(0.55, Math.min(1.7, el.clientHeight / CANVAS.h)));
+      setScale(stripScale(el.clientWidth, el.clientHeight));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(read);
@@ -192,14 +194,15 @@ function AboutSpread() {
     <main className="relative bg-[#EEEEEE] text-ink">
       <h1 className="sr-only">About me — a designer's timeline</h1>
 
-      {/* Desktop: the exported spread on one canvas, scrolled sideways */}
+      {/* Shared artwork canvas, proportionally smaller on phones. */}
       <div
         ref={scrollerRef}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="hide-scrollbar relative hidden h-screen w-full overflow-x-auto overflow-y-hidden bg-[#EEEEEE] outline-none md:block"
+        aria-label="About me horizontal timeline"
+        className="hide-scrollbar relative block h-svh w-full overflow-x-auto overflow-y-hidden bg-paper outline-none"
       >
-        <div className="relative h-full" style={{ width: trackWidth }}>
+        <div className="relative h-full overflow-hidden" style={{ width: trackWidth }}>
           <div
             className="absolute left-0"
             style={{
@@ -583,12 +586,8 @@ function AboutSpread() {
         </div>
       )}
 
-      {/* Mobile: the same story, top to bottom */}
-      <MobileSpread />
-
-
       <div
-        className={`pointer-events-none fixed bottom-20 left-1/2 z-30 hidden -translate-x-1/2 items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-ink/50 transition-opacity duration-500 md:flex ${
+        className={`pointer-events-none fixed bottom-20 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-ink/50 transition-opacity duration-500 ${
           scrollX > 40 ? "opacity-0" : "opacity-100"
         }`}
       >
