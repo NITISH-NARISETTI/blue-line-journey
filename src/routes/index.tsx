@@ -62,7 +62,9 @@ function AboutSpread() {
     return () => window.removeEventListener("keydown", onKey);
   }, [zoomed]);
 
-  const trackWidth = CANVAS.w * scale;
+  const trackWidth = viewport < 768
+    ? 8205 * scale + viewport * 0.12
+    : CANVAS.w * scale;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
