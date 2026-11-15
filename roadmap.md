@@ -1,0 +1,3 @@
+- [ ] Replace phone timeline with proportionally scaled horizontal artwork on the site.
+- [ ] Deliver updated Framer component with the same mobile sizing and effects.
+- [ ] Check phone sizes, interactions, end-of-strip visibility, and desktop preservation.
