@@ -209,6 +209,16 @@
   }
 }
 
+@keyframes swipe-nudge {
+  0%, 100% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+}
+
+.mobile-swipe-cue {
+  display: inline-block;
+  animation: swipe-nudge 2.4s ease-in-out infinite;
+}
+
 .marching-line {
   animation: march-dash 1.6s linear infinite;
 }
@@ -284,6 +294,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in-soft,
+  .mobile-swipe-cue,
   .marching-line,
   .reveal-edge {
     animation: none;

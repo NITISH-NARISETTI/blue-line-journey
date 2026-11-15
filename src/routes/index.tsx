@@ -6,7 +6,7 @@ import { Reveal } from "@/components/about/reveal";
 import { stripScale } from "@/components/about/strip-scale";
 import { CopyEmail } from "@/components/about/copy-email";
 
-import strip from "@/assets/about-me-strip.svg.asset.json";
+import strip from "@/assets/about-me-foreground.svg.asset.json";
 import lines from "@/assets/about-me-lines.svg.asset.json";
 import { ProfileCard } from "@/components/about/profile-card";
 import { Sketchbook } from "@/components/about/sketchbook";
@@ -171,11 +171,6 @@ function AboutSpread() {
     ? CANVAS.w
     : Math.max(0, (scrollX + viewport * 0.85) / Math.max(scale, 0.01));
 
-  // Where the grey-to-blue colour front currently sits.
-  const front = reduced
-    ? CANVAS.w + 1200
-    : Math.max(0, (scrollX + viewport * 0.55) / Math.max(scale, 0.01));
-
   // Soft, blurred reveal edge instead of a hard cut.
   const fade = 220;
   const atEnd = scrollX + viewport >= trackWidth - 16;
@@ -191,7 +186,7 @@ function AboutSpread() {
 
 
   return (
-    <main className="relative bg-[#EEEEEE] text-ink">
+    <main className="relative bg-paper text-ink">
       <h1 className="sr-only">About me — a designer's timeline</h1>
 
       {/* Shared artwork canvas, proportionally smaller on phones. */}
@@ -204,7 +199,7 @@ function AboutSpread() {
       >
         <div className="relative h-full overflow-hidden" style={{ width: trackWidth }}>
           <div
-            className="absolute left-0"
+              className="absolute isolate left-0"
             style={{
               width: CANVAS.w,
               height: CANVAS.h,
@@ -214,12 +209,10 @@ function AboutSpread() {
             }}
           >
             <div
-              className="absolute left-0 top-0"
+              className="absolute left-0 top-0 z-10"
               style={{
                 width: CANVAS.w,
                 height: CANVAS.h,
-                maskImage: softMask,
-                WebkitMaskImage: softMask,
               }}
             >
               <img
@@ -503,46 +496,22 @@ function AboutSpread() {
             </div>
 
 
-            {/* Grey copy of the ten line vectors, wiped away by the scroll front
-                so the blue underneath fills in from left to right. */}
+            {/* The blue spine stays behind every artwork and text layer.
+                Only this layer receives the soft reveal mask. */}
             {lineArt && (
               <svg
                 aria-hidden
-                className="fade-in-soft pointer-events-none absolute left-0 top-0"
+                className="pointer-events-none absolute left-0 top-0 z-0 text-electric"
                 width={CANVAS.w}
                 height={CANVAS.h}
                 viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
                 style={{
-                  zIndex: 1,
                   maskImage: softMask,
                   WebkitMaskImage: softMask,
                 }}
               >
-                <defs>
-                  <linearGradient
-                    id="line-sweep"
-                    gradientUnits="userSpaceOnUse"
-                    x1={front - 420}
-                    y1={0}
-                    x2={front + 220}
-                    y2={0}
-                  >
-                    <stop offset="0%" stopColor="black" />
-                    <stop offset="100%" stopColor="white" />
-                  </linearGradient>
-                  <mask id="line-sweep-mask">
-                    <rect
-                      x={0}
-                      y={0}
-                      width={CANVAS.w}
-                      height={CANVAS.h}
-                      fill="url(#line-sweep)"
-                    />
-                  </mask>
-                </defs>
                 <g
-                  mask="url(#line-sweep-mask)"
-                  dangerouslySetInnerHTML={{ __html: lineArt }}
+                  dangerouslySetInnerHTML={{ __html: lineArt.replace(/#4E5875/gi, "currentColor") }}
                 />
               </svg>
             )}
@@ -591,9 +560,9 @@ function AboutSpread() {
           scrollX > 40 ? "opacity-0" : "opacity-100"
         }`}
       >
-        Scroll
+        <span>{viewport < 768 ? "Swipe" : "Scroll"}</span>
         <span className="inline-block h-px w-14 bg-electric" />
-        <span className="text-electric">→</span>
+        <span aria-hidden className={`${viewport < 768 ? "mobile-swipe-cue" : ""} text-electric`}>↔</span>
       </div>
     </main>
   );

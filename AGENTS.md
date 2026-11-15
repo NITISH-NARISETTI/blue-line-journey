@@ -11,3 +11,4 @@
 
 - Keep the site's email copy interaction in a shared about component so desktop and phone contact controls behave consistently.
 - Use one horizontal artwork canvas across screen sizes and the shared stripScale helper for site sizing, so mobile retains every artwork layer and interaction.
+- Separate the transparent foreground artwork from the blue spine; apply the reveal mask only to the lowest line layer so text and artwork remain unobscured.
