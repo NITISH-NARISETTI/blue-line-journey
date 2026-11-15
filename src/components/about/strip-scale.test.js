@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { stripScale } from "./strip-scale";
+import { stripScale } from "./strip-scale.ts";
 
 describe("proportional phone strip", () => {
   test("390px phone uses the requested 0.75x size", () => {
